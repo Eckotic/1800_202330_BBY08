@@ -7,8 +7,8 @@ This browser based web application to ...
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
 * I am Ethan Nguyen and I like Chicken Nuggets!
-* ...
 * Hi, my name is Raziel! I am excited to partake in the CST COMP1800 course, and create a web application with my amazing team partners!
+* I'm KC :) I'm very excited to design stuff and work with HTML, JS, and CSS, they're my strong suits >:D
 	
 ## 3. Technologies and Resources Used
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
