@@ -1,7 +1,13 @@
 #landing-page-footer {
     background-color: #787878;
     position: absolute;
+    bottom: 0px;
     left: 0;
     right: 0;
+}
+
+#landing-page-welcome-banner {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 
