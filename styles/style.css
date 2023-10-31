@@ -24,3 +24,21 @@ img {
     max-height: 50px;
 }
 
+/* To-Do List */
+#todo-list {
+    padding-top: 2em;
+    margin: auto;
+    text-align: center;
+}
+
+#todo-list > ul{
+    list-style: none;
+}
+
+.todo-list-item {
+    margin: auto;
+    width: 50%;
+    border-width: 2px;
+    border-style: solid;
+}
+
