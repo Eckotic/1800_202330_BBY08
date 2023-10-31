@@ -27,11 +27,15 @@ img {
 /* To-Do List */
 #todo-list {
     padding-top: 2em;
-    margin: auto;
-    text-align: center;
 }
 
-#todo-list > ul{
+#todo-list-heading {
+    text-align: center;
+    margin: auto;
+    width: 50%;
+}
+
+#todo-list>ul {
     list-style: none;
 }
 
@@ -40,5 +44,11 @@ img {
     width: 50%;
     border-width: 2px;
     border-style: solid;
+    text-align: center;
 }
 
+#new-item {
+    padding-left: 50%;
+    width: 50%;
+    height: auto;
+}
