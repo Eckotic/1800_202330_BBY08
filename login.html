@@ -18,7 +18,13 @@
         crossorigin="anonymous"></script>
 
     <!-- Other libraries go here -->
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script> 
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
 
@@ -32,7 +38,7 @@
     <!-- Stuff for body goes here -->
 
     <!--Navbar-->
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" >
         <div class="container-fluid">
             <img src="./images/elmo.jpg" class="logo" alt="Cat Bro">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -58,12 +64,12 @@
         </div>
     </nav>
 
-    <!-- Welcome Banner - Khalel -->
-    <div class="container-fluid py-5" id="landing-page-welcome-banner">
-        <h1 class="display-5 fw-bold">Welcome to the Eepy World</h1>
-        <p class="col-md-8 fs-4">In the Eeepy world, you'll meet fun characters and witness the adventures they embark on. The catch? Their day/night cycle depends on your sleep cycle! Only when you're asleep will the sun shine for them to explore. Will you bring light to their world?</p>
-        <button class="btn btn-warning btn-lg" type="button">Enter the Eepy World!</button>
-      </div>
+
+    <div class="container">
+        <h1>Let's Login!</h1>
+    </div>
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Loading...</div>
 
 
     <!-- Footer - Raziel -->
@@ -86,6 +92,8 @@
 
     <!-- Link to scripts of your own -->
     <!-- <script src="./scripts/script.js"></script> -->
+    <script src="./scripts/firebaseAPI_TEAM08.js"></script>
+    <script src="./scripts/authentication.js"></script>
 
 </body>
 
