@@ -1,5 +1,13 @@
+body {
+    background-color: #890f90;
+}
+
+.navbar {
+    background-color: #4C0750;
+}
+
 #landing-page-footer {
-    background-color: #787878;
+    background-color: #4C0750;
     position: absolute;
     bottom: 0px;
     left: 0;
