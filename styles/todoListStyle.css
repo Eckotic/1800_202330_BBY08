@@ -17,7 +17,7 @@ body {
     margin: 20px auto;
 }
 
-.todo-list {
+.todo-list, .task-list {
     background-color: #DDA0DD; /* #DDA0DD; */
     border-radius: 20px;
     padding: 30px;
@@ -47,8 +47,19 @@ body {
     filter: brightness(0.7);
 }
 
+.task-list { 
+    margin-top: 10px; 
+    padding: 20px;
+}
+
 .task {
-    padding: 5px;
-    margin-top: 5px;
-    position: relative;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #4B0082;
+    background-color: white;
+    border-radius: 20px;
+    width: 100%;
 }

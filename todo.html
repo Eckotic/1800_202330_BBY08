@@ -11,6 +11,11 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
     <link rel="stylesheet" href="./styles/todoListStyle.css">
 </head>
 
@@ -42,7 +47,7 @@
     </nav>
 
     <div class="todo-list-container">
-        <div>
+        <div class="todo-title">
             <h2>ToDo</h2>
             <!-- add icon here eventually lol -->
         </div>
@@ -51,10 +56,12 @@
             <button class="new-item">Add</button>
         </form>
 
-        <div class="task-list"></div>
+        <div class="task-list">
+            <div class="task">Your todo list is empty!</div>
+        </div>
     </div>
-
-    <script src="scripts/todoList.js"></script>
+    
+    <script src="./scripts/todoList.js"></script>
 </body>
 
 </html>
