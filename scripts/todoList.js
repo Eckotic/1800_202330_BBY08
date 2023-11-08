@@ -12,7 +12,7 @@ function printTaskList() {
 function addTask() {
 
     let taskDescription = taskContent.value;
-    
+
     if (taskDescription == "") {
         return;
     }
