@@ -1,114 +1,38 @@
-/* Navbar */
-.grid-container {
-    display: grid;
-    grid-template-rows: 10vh 50vh 40vh;
-    background-color: #890f90;
-}
-
-.nav-bar {
-    background-color: #4C0750;
-    display: grid;
-    grid-template-columns: 10vw 80vw 10vw;
-}
-
-.nav-bar>img {
-    max-width: 10vh;
-    max-height: 10vh;
-    border-radius: 50%;
-}
-
-.nav-bar p {
-    text-align: center;
-    margin: auto;
-    color: white;
-    font-size: xx-large;
-}
-
-#logo1 {
-    float: left;
-}
-
-.nav-bar .material-symbols-outlined {
-    color: white;
-    font-size: 8vh;
-}
-
-.dropdown-content .material-symbols-outlined {
-    font-size: 3vh;
-    color: black;
-    display: inline-block;
-}
-
-.dropbtn {
-    background-color: #4C0750;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-height: 90vh;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-.dropdown-content a:hover {
-    background-color: #f1f1f1
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
 /* Body */
 
 .image {
     position: relative;
+    display: grid;
+    grid-template-rows: 50% 50%;
 }
 
 .image h1 {
     position: absolute;
-    top: 15vh;
-    left: 36vw;
-    margin: auto;
+    bottom: 0;
+    left: 40%;
     color: white;
-    font-size: 7vw;
+    font-size: 6vh;
     background: -webkit-linear-gradient(#ffffff, #818181);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    grid-row-start: 1;
+    grid-row-end: 2;
 }
 
 #sleep-button {
     position: absolute;
-    top: 25vh;
-    left: 36vw;
-    margin: auto;
     color: white;
-    font-size: 6vw;
+    left: 35%;
+    font-size: 6vh;
     padding: 0vw 10vw 0vw 10vw;
     background: -webkit-linear-gradient(#ffc400, #deaa00);
-    -webkit-background-clip: button;
     -webkit-text-fill-color: white;
+    grid-row-start: 2;
+    grid-row-end: 3;
 }
 
 #sleep-button:hover {
     background: -webkit-linear-gradient(#ffcb21, #ffd755);
-    -webkit-background-clip: button;
     -webkit-text-fill-color: white;
 }
 
@@ -129,7 +53,7 @@
     color: white;
     border-radius: 5%;
     padding: 10px;
-    margin: 20px;
+    margin: 2vw;
     text-decoration: none;
     display: grid;
     grid-template-rows: 15vh 18vh;
