@@ -1,38 +1,43 @@
-const firebaseConfig = {
-    apiKey: "AIzaSyBxhD1zOR93QED5tJgatsA_GVjLMCZeQr4",
-    authDomain: "eepy-world.firebaseapp.com",
-    projectId: "eepy-world",
-    storageBucket: "eepy-world.appspot.com",
-    messagingSenderId: "260046467348",
-    appId: "1:260046467348:web:e4e5be404c4ea19fba9201"
-};
+const taskContent = document.getElementById("item-content");
+const addItem = document.getElementById("new-item");
+const listOfTasks = document.getElementById("task-list");
 
-const app = firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+const user = db.collection("users").doc("hdZ49Qd3r33c9sSlWl2e");
+const taskList = user.collection("currentTasks");
 
-const taskContent = document.querySelector(".item-content");
-const addItem = document.querySelector(".new-item");
-const listOfTasks = document.querySelector(".task-list");
-var taskNum = 0;
-
-function addTask() {
-    taskNum++;
-    let newTask = document.createElement("div");
-    let taskText = taskContent.value;
-    newTask.innerHTML = taskText;
-    newTask.className = "task";
-    taskContent.value = "";
-    listOfTasks.appendChild(newTask);
-    
-    db.collection("users").doc("hdZ49Qd3r33c9sSlWl2e").collection("currentTasks").doc("task".concat(taskNum)).set({
-        checked: false,
-        description: String(taskText),
-    })
-
-    // db.collection("users").doc("hdZ49Qd3r33c9sSlWl2e").collection("currentTasks").doc("task0").set({
-    //     checked: false,
-    //     description: taskText,
-    // })
+function printTaskList() {
+    // get task docs from firebase and print them all
 }
 
-addItem.addEventListener("click", addTask());
+function addTask() {
+
+    let taskDescription = taskContent.value;
+
+    if (taskDescription == "") {
+        return;
+    }
+
+    user.get().then(doc => {
+
+        let taskNumber = doc.data().taskNumber;
+
+        user.update({
+            taskNumber: taskNumber + 1
+        });
+
+        taskList.doc("task".concat(taskNumber)).set({
+            checked: false,
+            description: taskDescription,
+        });
+
+        let newTask = document.createElement("li");
+        newTask.innerHTML = taskDescription;
+        newTask.className = "task";
+        listOfTasks.appendChild(newTask);
+        taskContent.value = "";
+
+    });
+
+}
+
+addItem.addEventListener("click", addTask); 

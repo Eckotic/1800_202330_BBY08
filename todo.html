@@ -2,10 +2,8 @@
 <html lang="en">
 
 <head>
-    <title>EEPY World</title>
-    <meta name="comp1800 template" content="My 1800 App">
+    <title>To-Do List</title>
 
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -17,17 +15,9 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 
-    <!-- Other libraries go here -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
-    <!-- Link to styles of your own -->
-    <link rel="stylesheet" href="./styles/style.css">
+
     <link rel="stylesheet" href="./styles/todoListStyle.css">
 </head>
 
@@ -40,19 +30,21 @@
             <h2>ToDo</h2>
             <!-- add icon here eventually lol -->
         </div>
-        <form class="todo-list">
-            <input type="text" class="item-content" />
-            <button class="new-item">Add</button>
-        </form>
-
-        <div class="task-list">
-            <div class="task">Your todo list is empty!</div>
+        <div class="todo-list">
+            <input type="text" id="item-content" />
+            <button id="new-item">Add</button>
         </div>
+
+        <ul id="task-list">
+            <li class="task">Your todo list is empty!</li>
+        </ul>
     </div>
-    
+
+
     <script src="./scripts/firebaseAPI_TEAM08.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/todoList.js"></script>
+
 </body>
 
 </html>
