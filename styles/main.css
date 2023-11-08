@@ -93,6 +93,25 @@
     -webkit-text-fill-color: transparent;
 }
 
+#sleep-button {
+    position: absolute;
+    top: 25vh;
+    left: 36vw;
+    margin: auto;
+    color: white;
+    font-size: 6vw;
+    padding: 0vw 10vw 0vw 10vw;
+    background: -webkit-linear-gradient(#ffc400, #deaa00);
+    -webkit-background-clip: button;
+    -webkit-text-fill-color: white;
+}
+
+#sleep-button:hover {
+    background: -webkit-linear-gradient(#ffcb21, #ffd755);
+    -webkit-background-clip: button;
+    -webkit-text-fill-color: white;
+}
+
 #main-img {
     width: 100vw;
     height: 50vh;
