@@ -19,8 +19,80 @@ body {
     grid-template-rows: 1fr 1fr 1fr;
 }
 
-img {
-    max-width: 50px;
-    max-height: 50px;
+.grid-container {
+    display: grid;
+    grid-template-rows: 10vh 50vh 40vh;
+    background-color: #890f90;
+}
+
+.nav-bar {
+    background-color: #4C0750;
+    display: grid;
+    grid-template-columns: 20vw 60vw 20vw;
+}
+
+.nav-bar>img {
+    max-width: 10vh;
+    max-height: 10vh;
     border-radius: 50%;
+}
+
+.nav-bar p {
+    text-align: center;
+    margin: auto;
+    color: white;
+    font-size: xx-large;
+}
+
+#logo1 {
+    float: left;
+}
+
+.nav-bar .material-symbols-outlined {
+    color: white;
+    font-size: 8vh;
+}
+
+.dropdown-content .material-symbols-outlined {
+    font-size: 3vh;
+    color: black;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: #4C0750;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    float: right;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-height: 90vh;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
