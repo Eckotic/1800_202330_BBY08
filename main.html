@@ -46,14 +46,41 @@
             <button id="sleep-button" class="btn btn-warning btn-lg" type="button">Sleep</button>
             <img src="./images/sky.jpeg" id="main-img" alt="sky">
         </div>
-        <div id="popup-window">
+        <div id="sleep-popup">
             <p><span class="material-symbols-outlined">warning</span>Are you sure you want to activate sleep mode?</p>
-            <input type="checkbox" id="ignore-popup"><label for="ignore-popup">Don't show again.</label>
-            <button class="btn btn-secondary btn-sm" id="cancel-button">Cancel</button>
-            <button type="submit" class="btn btn-primary btn-sm" id="confirm-button">Confirm</button>
-        </div>  
+            <input type="checkbox" id="ignore-sleep-popup"><label for="ignore-sleep-popup">Don't show again.</label>
+            <button class="btn btn-secondary btn-sm" id="cancel-sleep-button">Cancel</button>
+            <button type="submit" class="btn btn-primary btn-sm" id="confirm-sleep-button">Confirm</button>
+        </div> 
+        <div id="session-popup">
+            <span class="material-symbols-outlined" id="close-window">close</span>
+            <div class="mt-2 mb-3 text-center">
+                <h1>Good Morning!</h1>
+            </div>
+            <hr>
+            <div class="mt-1 mb-1 text-center">
+                <h3>Sleep Analytics</h3>
+            </div>
+            <ul>
+                <li>Sleep Date Start:</li>
+                <li>Sleep Date End:</li>
+                <li>Length of Sleep:</li>
+                <li>Sleep Goal:</li>
+            </ul>
+            <hr>
+            <div class="mt-1 mb-1 text-center">
+                <h3>Game Stats</h3>
+            </div>
+            <ul>
+                <li>Resources:</li>
+                <li>Stuff</li>
+                <li>Stuff</li>
+            </ul>
+            <button class="btn btn-warning btn-lg" id="sleep-game" onclick="window.location.href = 'game.html';">Sleep Game</button>
+            <button class="btn btn-primary btn-lg" id="sleep-log" onclick="window.location.href = 'tracker.html';">Log Sleep</button>
+        </div>
         <div class="feature-container">
-            <a href="#" class="sleep-tracker">
+            <a href="./tracker.html" class="sleep-tracker">
             <div class="sleep-app">
                 <h1>Sleep Tracker</h>
                 <span class="material-symbols-outlined">monitoring</span>

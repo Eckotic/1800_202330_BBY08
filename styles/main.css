@@ -80,7 +80,7 @@ body {
     margin: auto;
 }
 
-#popup-window {
+#sleep-popup {
     position: fixed;
     width: 300px;
     height: 200px;
@@ -96,21 +96,21 @@ body {
     display: none;
 }     
 
-#cancel-button {
+#cancel-sleep-button {
     position: absolute;
     bottom: 0px;
     right: 80px;
     margin: 10px;
 } 
 
-#confirm-button {
+#confirm-sleep-button {
     position: absolute;
     bottom: 0px;
     right: 0px;
     margin: 10px;
 }
 
-#popup-window label {
+#sleep-popup label {
     margin-left: 10px;
 }
 
@@ -126,9 +126,9 @@ body {
     background-color: rgba(0,0,0,0.5); /* Black background with opacity */
     z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer; /* Add a pointer on hover */
-  }
+}
 
-  #overlay button {
+#overlay button {
     position: fixed;
     height: 80px;
     width: 300px;
@@ -137,4 +137,38 @@ body {
     right: 0;
     bottom: 0;
     margin: auto;   
-  }
+}
+
+#session-popup {
+    position: fixed;
+    width: 400px;
+    height: 500px;
+    background: white;
+    border: 1px solid black;
+    padding: 10px;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    display: none;
+}
+
+#sleep-game {
+    position: absolute;
+    bottom: 0px;
+    right: 50px;
+    margin: 10px;
+} 
+
+#sleep-log {
+    position: absolute;
+    bottom: 0px;
+    left: 50px;
+    margin: 10px;
+}
+
+#session-popup .material-symbols-outlined{
+    cursor: pointer;
+}

@@ -20,12 +20,31 @@ getNameFromAuth(); //run the function
 
 // Get the elements by their ID
 var popupLink = document.getElementById("sleep-button");
-var popupWindow = document.getElementById("popup-window");
-var closeButton = document.getElementById("cancel-button");
-var confirmButton = document.getElementById("confirm-button");
-var ignoreButton = document.getElementById("ignore-popup");
+var popupWindow = document.getElementById("sleep-popup");
+var closeSleepButton = document.getElementById("cancel-sleep-button");
+var confirmButton = document.getElementById("confirm-sleep-button");
+var ignoreButton = document.getElementById("ignore-sleep-popup");
+var sessionWindow = document.getElementById("session-popup");
+var closeSessionButton = document.getElementById("close-window");
+var sleepLogButton = document.getElementById("sleep-log");
+var sleepGameButton = document.getElementById("sleep-game");
 
 var ignore = false;
+
+sleepLogButton.addEventListener("click", function () {
+    sessionWindow.style.display = "none";
+    finishSession();
+});
+
+sleepGameButton.addEventListener("click", function () {
+    sessionWindow.style.display = "none";
+    finishSession();
+});
+
+closeSessionButton.addEventListener("click", function () {
+    sessionWindow.style.display = "none";
+    finishSession();
+});
 
 // Show the pop-up window when the link is clicked
 popupLink.addEventListener("click", function (event) {
@@ -37,7 +56,7 @@ popupLink.addEventListener("click", function (event) {
     }
 });
 // Hide the pop-up window when the close button is clicked
-closeButton.addEventListener("click", function () {
+closeSleepButton.addEventListener("click", function () {
     popupWindow.style.display = "none";
 });
 
@@ -57,6 +76,7 @@ function sleepMode() {
 function off() {
     document.getElementById("overlay").style.display = "none";
     stopStopwatch();
+    sessionWindow.style.display = "block";
 }
 
 var startTime; // to keep track of the start time
@@ -86,7 +106,11 @@ function updateStopwatch() {
     document.getElementById("sleep-button").innerText = displayTime; // update the display
 }
   
-  function pad(number) {
+function pad(number) {
     // add a leading zero if the number is less than 10
     return (number < 10 ? "0" : "") + number;
-  }
+}
+
+function finishSession() {
+    return;
+}
