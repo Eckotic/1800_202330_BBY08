@@ -1,4 +1,6 @@
-/* Body */
+body {
+    background-color: none;
+}
 
 .image {
     position: relative;
@@ -9,7 +11,7 @@
 .image h1 {
     position: absolute;
     bottom: 0;
-    left: 40%;
+    left: 36%;
     color: white;
     font-size: 6vh;
     background: -webkit-linear-gradient(#ffffff, #818181);
@@ -22,9 +24,10 @@
 #sleep-button {
     position: absolute;
     color: white;
-    left: 35%;
+    left: 34%;
     font-size: 6vh;
-    padding: 0vw 10vw 0vw 10vw;
+    width: 32vw;
+    height: 10vh;
     background: -webkit-linear-gradient(#ffc400, #deaa00);
     -webkit-text-fill-color: white;
     grid-row-start: 2;
@@ -76,3 +79,62 @@
     grid-row-end: 3;
     margin: auto;
 }
+
+#popup-window {
+    position: fixed;
+    width: 300px;
+    height: 200px;
+    background: white;
+    border: 1px solid black;
+    padding: 10px;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    display: none;
+}     
+
+#cancel-button {
+    position: absolute;
+    bottom: 0px;
+    right: 80px;
+    margin: 10px;
+} 
+
+#confirm-button {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin: 10px;
+}
+
+#popup-window label {
+    margin-left: 10px;
+}
+
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+  }
+
+  #overlay button {
+    position: fixed;
+    height: 80px;
+    width: 300px;
+    top: 10px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;   
+  }

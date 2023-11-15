@@ -46,6 +46,12 @@
             <button id="sleep-button" class="btn btn-warning btn-lg" type="button">Sleep</button>
             <img src="./images/sky.jpeg" id="main-img" alt="sky">
         </div>
+        <div id="popup-window">
+            <p><span class="material-symbols-outlined">warning</span>Are you sure you want to activate sleep mode?</p>
+            <input type="checkbox" id="ignore-popup"><label for="ignore-popup">Don't show again.</label>
+            <button class="btn btn-secondary btn-sm" id="cancel-button">Cancel</button>
+            <button type="submit" class="btn btn-primary btn-sm" id="confirm-button">Confirm</button>
+        </div>  
         <div class="feature-container">
             <a href="#" class="sleep-tracker">
             <div class="sleep-app">
@@ -65,6 +71,9 @@
                 <span class="material-symbols-outlined">landscape</span>
             </div>
             </a>
+        </div>
+        <div id="overlay">
+            <button class="btn btn-danger btn-lg" onclick="off()">End Sleep Session</button>
         </div>
     </div>
 
