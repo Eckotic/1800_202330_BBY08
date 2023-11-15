@@ -10,6 +10,8 @@ function getNameFromAuth() {
             //method #1:  insert with JS
             document.getElementById("name-goes-here").innerText = userName;    
 
+            
+
             //method #2:  insert using jquery
             //$("#name-goes-here").text(userName); //using jquery
 
@@ -21,4 +23,36 @@ function getNameFromAuth() {
         }
     });
 }
+
+function createUserDB(){
+    firebase.auth().onAuthStateChanged(user =>{
+
+        if (user){
+
+            let doc = db.collection("users").doc(user.uid);
+
+            doc.get().then( DOC => {
+                if (!DOC.exists){
+                    console.log("DOES NOT EXIST");
+                    doc.set({
+                        name: user.displayName,
+                        resources: 50
+                    });
+                    doc.collection("game").doc("farmerCat").set({
+                        power: 50,
+                        health: 50
+                    });
+                }
+                else{
+                    console.log("exists")
+                }
+            });
+
+            
+        }
+
+    });
+}
+
+createUserDB();
 getNameFromAuth(); //run the function
