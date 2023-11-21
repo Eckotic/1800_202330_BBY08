@@ -8,18 +8,18 @@ const taskList = user.collection("currentTasks");;
 function createTask(description) {
     //create new <li> element
     let newTask = document.createElement("li");
-    newTask.innerHTML = description;
+    newTask.innerHTML = "<div class='task-content'>" + description + "</div>";
     //give the <li> element the class task
     newTask.className = "task";
 
     //creates delete icon
     //adds it to task
-    let deleteX = document.createElement("span");
+    let deleteX = document.createElement("div");
     deleteX.className = 'material-symbols-outlined deleteTask';
     deleteX.innerHTML = "delete";
     newTask.appendChild(deleteX);
 
-    let editTask = document.createElement("span");
+    let editTask = document.createElement("div");
     editTask.className = 'material-symbols-outlined editTask';
     editTask.innerHTML = "edit";
     newTask.appendChild(editTask);
@@ -35,7 +35,7 @@ async function isTaskListEmpty() {
     querySnapshot.forEach(doc => {
         count++;
     })
-    console.log(count);
+
     if (count < 1 && document.getElementById("noTasks") == null) {
         let newTask = document.createElement("li");
         newTask.innerHTML = "You have no tasks!";
@@ -63,8 +63,6 @@ function printTaskList() {
         })
     });
 }
-
-
 printTaskList();
 
 async function addTask() {
@@ -114,10 +112,16 @@ function deleteTask() {
             event.target.parentElement.remove();
 
             // finds where the icons are
-            let styleIndex = event.target.parentElement.innerHTML.indexOf("<");
+            let styleIndex = event.target.parentElement.innerHTML.indexOf('<div class="material-symbols-outlined deleteTask">');
+            console.log(styleIndex);
             // gets only the task description
             let taskDescription = event.target.parentElement.innerHTML.substring(0, styleIndex);
+            styleIndex = taskDescription.indexOf('>');
+            taskDescription = taskDescription.substring(styleIndex + 1);
+            styleIndex = taskDescription.indexOf('<');
+            taskDescription = taskDescription.substring(0, styleIndex);
 
+            console.log(taskDescription);
             // gets currentTasks from firebase
             taskList.get().then(querySnapshot => {
                 //iterates through each document
@@ -130,7 +134,6 @@ function deleteTask() {
                         return;
                     }
                 })
-                console.log(isTaskListEmpty());
                 isTaskListEmpty();
             })
         }
