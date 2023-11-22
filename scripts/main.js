@@ -20,6 +20,8 @@ function insertNameFromFirestore() {
     })
 }
 
+insertNameFromFirestore()
+
 function createUserDB(){
     firebase.auth().onAuthStateChanged(user =>{
 

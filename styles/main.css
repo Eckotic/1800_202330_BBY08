@@ -2,6 +2,16 @@ body {
     background-color: linear-gradient(to bottom, #6750c4, #71059c);
 }
 
+#logo1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    margin: 0;
+}
+
 .image {
     position: relative;
     display: grid;
