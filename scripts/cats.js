@@ -71,6 +71,7 @@ function upgradeStats(){
 
             //update display
             resourcesDisplay.innerHTML = "Resources left: " + resources;
+            upgrading = true;
             updateStats();
 
         }
