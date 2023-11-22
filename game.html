@@ -28,16 +28,33 @@
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/cats.css">
 </head>
 
 <body>
     <!-- our own navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
 
-    <div id="resources-goes-here"></div>
-    <div id="power-goes-here"></div>
 
-    <button type="button" id="upgrade-button">UPGRADE</button>
+    <div id="cat-display">
+        <img id="cat-img" src="https://placehold.co/200">
+        <div id="stats-container">
+            <div class="text-center" id="name-goes-here"></div>
+            <div class="text-center" id="health-goes-here"></div>  
+            <div class="text-center" id="power-goes-here"></div>    
+        </div>
+        <button type="button" id="upgrade-button">UPGRADE</button>
+        <div id="resources-goes-here"></div>
+    </div>
+
+    <div id="selection-grid">
+        <img src="https://placehold.co/100" width="auto">
+        <img src="https://placehold.co/100" width="auto">
+        <img src="https://placehold.co/100" width="auto">
+        <img src="https://placehold.co/100" width="auto">
+        <img src="https://placehold.co/100" width="auto">
+        <img src="https://placehold.co/100" width="auto">
+    </div>
 
     <script src="./scripts/firebaseAPI_TEAM08.js"></script>
     <script src="./scripts/skeleton.js"></script>
