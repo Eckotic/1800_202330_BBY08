@@ -18,12 +18,13 @@
         crossorigin="anonymous"></script>
 
     <!-- Other libraries go here -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/main.css">
@@ -51,7 +52,14 @@
             <input type="checkbox" id="ignore-sleep-popup"><label for="ignore-sleep-popup">Don't show again.</label>
             <button class="btn btn-secondary btn-sm" id="cancel-sleep-button">Cancel</button>
             <button type="submit" class="btn btn-primary btn-sm" id="confirm-sleep-button">Confirm</button>
-        </div> 
+        </div>
+        <div id="end-sleep-popup">
+            <p><span class="material-symbols-outlined">warning</span>Are you sure you want to end your sleep session?</p>
+            <p id="session-warning"></p>
+            <input type="checkbox" id="ignore-end-sleep-popup"><label for="ignore-end-sleep-popup">Don't show again.</label>
+            <button class="btn btn-secondary btn-sm" id="cancel-end-sleep-button">Cancel</button>
+            <button type="submit" class="btn btn-primary btn-sm" id="confirm-end-sleep-button">Confirm</button>
+        </div>
         <div id="session-popup">
             <span class="material-symbols-outlined" id="close-window">close</span>
             <div class="mt-2 mb-3 text-center">
@@ -62,9 +70,9 @@
                 <h3>Sleep Analytics</h3>
             </div>
             <ul>
-                <li>Sleep Date Start:</li>
-                <li>Sleep Date End:</li>
-                <li>Length of Sleep:</li>
+                <li id="start-date">Sleep Date Start:</li>
+                <li id="end-date">Sleep Date End:</li>
+                <li id="sleep-length">Length of Sleep:</li>
                 <li>Sleep Goal:</li>
             </ul>
             <hr>
@@ -76,32 +84,48 @@
                 <li>Stuff</li>
                 <li>Stuff</li>
             </ul>
-            <button class="btn btn-warning btn-lg" id="sleep-game" onclick="window.location.href = 'game.html';">Sleep Game</button>
-            <button class="btn btn-primary btn-lg" id="sleep-log" onclick="window.location.href = 'tracker.html';">Log Sleep</button>
+            <button class="btn btn-warning btn-lg" id="sleep-game" onclick="window.location.href = 'game.html';">Sleep
+                Game</button>
+            <button class="btn btn-primary btn-lg" id="sleep-log" onclick="window.location.href = 'tracker.html';">Log
+                Sleep</button>
         </div>
+
         <div class="feature-container">
-            <a href="./tracker.html" class="sleep-tracker">
-            <div class="sleep-app">
-                <h1>Sleep Tracker</h>
-                <span class="material-symbols-outlined">monitoring</span>
+            <div class="slider">
+                <div class="slides">
+                    <a href="./tracker.html" id="sleep-tracker">
+                        <div class="sleep-app">
+                            <h1>Sleep Tracker</h>
+                        </div>
+                    </a>
+                    <a href="./todo.html" id="to-do-list">
+                        <div class="to-do-list">
+                            <h1>To Do List</h1>
+                        </div>
+                    </a>
+                    <a href="./game.html" id="game">
+                        <div class="game">
+                            <h1>Sleep Game</h1>
+                        </div>
+                    </a>
+                </div>
             </div>
-            </a>
-            <a href="./todo.html" class="to-do-list">
-            <div class="to-do-list">
-                <h1>To Do List</h1>
-                <span class="material-symbols-outlined">checklist</span>
-            </div>
-            </a>
-            <a href="./game.html" class="sleep-game">
-            <div class="game">
-                <h1>Sleep Game</h1>
-                <span class="material-symbols-outlined">landscape</span>
-            </div>
-            </a>
         </div>
+
+        <br><br><br><br>
+
+        <footer class="navbar justify-content-evenly fixed-bottom text-white p-3">
+            <div class="footer-container">
+                <a href="#sleep-tracker"><span class="material-symbols-outlined">monitoring</span></a>
+                <a href="#to-do-list"><span class="material-symbols-outlined">checklist</span></a>
+                <a href="#game"><span class="material-symbols-outlined">landscape</span></a>
+            </div>
+        </footer>
+
         <div id="overlay">
-            <button class="btn btn-danger btn-lg" onclick="off()">End Sleep Session</button>
+            <button id="end-session" class="btn btn-danger btn-lg">End Sleep Session</button>
         </div>
+        
     </div>
 
     <script src="./scripts/firebaseAPI_TEAM08.js"></script>

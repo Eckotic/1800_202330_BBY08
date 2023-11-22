@@ -1,119 +1,120 @@
 body {
     background-color: #890f90;
+    margin: 0;
+    padding: 0
 }
 
 .navbar {
-    background-color: #4C0750;
+    background-color: #4c0750
 }
 
-.logo {
-    max-width: 50px;
-    max-height: 50px;
-}
-
-/* To-Do List */
 .todo-list-container {
-    width: 40%;
     margin: 20px auto;
+    display: flex;
+    align-items: first baseline;
+    justify-content: center;
+    flex-direction: column
 }
 
-.todo-list,
-#task-list {
-    background-color: #DDA0DD;
-    /* #DDA0DD; */
-    border-radius: 20px;
-    padding: 30px;
+@media only screen and (min-width:1281px) {
+    .todo-list-container {
+        width: 40%
+    }
+}
+
+@media only screen and (min-width:701px) and (max-width:1280px) {
+    .todo-list-container {
+        width: 40%
+    }
+}
+
+@media only screen and (max-width:700px) {
+    .todo-list-container {
+        width: 80%
+    }
+}
+
+.todo-list-container :not(#item-content, #new-item, .deleteTask, .editTask, .task-content) {
+    width: 100%
+}
+
+#task-list,
+.todo-list {
+    background-color: plum;
+    border-radius: 20px
 }
 
 .todo-list {
+    padding: 30px;
     display: flex;
-    align-items: center;
+    align-items: center
 }
 
 #task-list {
-    display: block;
+    flex-direction: column;
+    margin-top: 10px;
+    padding: 20px;
+    list-style: none
 }
 
 #item-content {
     padding: 10px;
-    /* border-width: 1px; */
+    width: 90%;
     border-style: solid;
-    border-color: #4B0082;
+    border-color: indigo;
     border-radius: 10px;
-    flex: 1;
-    height: 50px;
+    height: 50px
 }
 
 #new-item {
-    border: none;
+    width: 10%;
+    text-align: center;
+    border: 0;
     border-radius: 10px;
     padding: 10px 25px;
     margin-left: 10px;
-    background-color: #32174D;
-    color: white;
-    height: 50px;
+    background-color: #32174d;
+    color: #fff
 }
 
 #new-item:hover {
-    filter: brightness(0.7);
+    filter: brightness(.5);
+    cursor: pointer
 }
 
-#task-list {
-    margin-top: 10px;
-    padding: 20px;
-    list-style: none;
-}
-
-.task,
-#noTasks {
+#noTasks,
+.task {
     margin-top: 2px;
-    margin-left: 10px;
-    margin-right: 10px;
     padding: 10px;
     border-width: 1px;
     border-style: solid;
-    border-color: #4B0082;
-    background-color: white;
-    border-radius: 10px;
+    border-color: indigo;
+    background-color: #fff;
+    border-radius: 10px
 }
 
 .task {
-    display: grid;
-    grid-template-columns: 90% auto auto;
-    grid-template-rows: 100%;
+    display: flex
 }
 
 .task-content {
-    /* inline-size: 90%; */
-    overflow-wrap: break-word;
-}
-
-.task-content {
-    grid-column: 1 / span 1;
-    grid-row: 1 / span 1;
-}
-
-.deleteTask {
-    grid-column: 3 / span 1;
-    grid-row: 1 / span 1;
-}
-
-.editTask {
-    grid-column: 2 / span 1;
-    grid-row: 1 / span 1;
+    display: inline-block;
+    word-break: break-word;
+    display: flex;
+    flex: 20
 }
 
 .deleteTask,
 .editTask {
-    /* visibility: hidden; */
+    display: flex;
+    flex: 1;
     float: right;
-    cursor: pointer;
+    cursor: pointer
 }
 
 #task-list:hover .deleteTask,
 #task-list:hover .editTask {
     display: inline-flex;
-    visibility: visible;
     float: right;
-    cursor: pointer;
+    cursor: pointer
 }

@@ -3,6 +3,7 @@ const addItem = document.getElementById("new-item");
 const listOfTasks = document.getElementById("task-list");
 
 const user = db.collection("users").doc("hdZ49Qd3r33c9sSlWl2e");
+console.log(user);
 const taskList = user.collection("currentTasks");;
 
 function createTask(description) {
@@ -12,17 +13,17 @@ function createTask(description) {
     //give the <li> element the class task
     newTask.className = "task";
 
+    let editTask = document.createElement("div");
+    editTask.className = 'material-symbols-outlined editTask';
+    editTask.innerHTML = "edit";
+    newTask.appendChild(editTask);
+
     //creates delete icon
     //adds it to task
     let deleteX = document.createElement("div");
     deleteX.className = 'material-symbols-outlined deleteTask';
     deleteX.innerHTML = "delete";
     newTask.appendChild(deleteX);
-
-    let editTask = document.createElement("div");
-    editTask.className = 'material-symbols-outlined editTask';
-    editTask.innerHTML = "edit";
-    newTask.appendChild(editTask);
 
     //add the <li> to listOfTasks
     listOfTasks.appendChild(newTask);
