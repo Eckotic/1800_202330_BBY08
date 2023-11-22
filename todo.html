@@ -15,8 +15,16 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    <link rel="stylesheet" href="./styles/style.css">
+
 
     <link rel="stylesheet" href="./styles/todoListStyle.css">
 </head>
@@ -31,13 +39,16 @@
             <!-- add icon here eventually lol -->
         </div>
         <div class="todo-list">
-            <input type="text" id="item-content" />
-            <button id="new-item">Add</button>
+            <textarea id="item-content" placeholder="Enter a task"></textarea>
+            <!-- <input type="text" id="item-content" placeholder="Enter a task" /> -->
+            <button id="new-item">
+                <span class="material-symbols-outlined">
+                    add
+                </span>
+            </button>
         </div>
 
-        <ul id="task-list">
-            <!-- <li class="task">Your todo list is empty!</li> -->
-        </ul>
+        <ul id="task-list"></ul>
     </div>
 
 

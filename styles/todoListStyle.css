@@ -17,8 +17,10 @@ body {
     margin: 20px auto;
 }
 
-.todo-list, #task-list {
-    background-color: #DDA0DD; /* #DDA0DD; */
+.todo-list,
+#task-list {
+    background-color: #DDA0DD;
+    /* #DDA0DD; */
     border-radius: 20px;
     padding: 30px;
 }
@@ -34,32 +36,36 @@ body {
 
 #item-content {
     padding: 10px;
-    border-width: 1px;
+    /* border-width: 1px; */
     border-style: solid;
     border-color: #4B0082;
-    border-radius: 20px;
+    border-radius: 10px;
     flex: 1;
+    height: 50px;
 }
 
 #new-item {
     border: none;
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 10px 25px;
     margin-left: 10px;
     background-color: #32174D;
     color: white;
+    height: 50px;
 }
 
 #new-item:hover {
     filter: brightness(0.7);
 }
-#task-list { 
-    margin-top: 10px; 
+
+#task-list {
+    margin-top: 10px;
     padding: 20px;
     list-style: none;
 }
 
-.task {
+.task,
+#noTasks {
     margin-top: 2px;
     margin-left: 10px;
     margin-right: 10px;
@@ -68,5 +74,46 @@ body {
     border-style: solid;
     border-color: #4B0082;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 10px;
+}
+
+.task {
+    display: grid;
+    grid-template-columns: 90% auto auto;
+    grid-template-rows: 100%;
+}
+
+.task-content {
+    /* inline-size: 90%; */
+    overflow-wrap: break-word;
+}
+
+.task-content {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.deleteTask {
+    grid-column: 3 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.editTask {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.deleteTask,
+.editTask {
+    /* visibility: hidden; */
+    float: right;
+    cursor: pointer;
+}
+
+#task-list:hover .deleteTask,
+#task-list:hover .editTask {
+    display: inline-flex;
+    visibility: visible;
+    float: right;
+    cursor: pointer;
 }

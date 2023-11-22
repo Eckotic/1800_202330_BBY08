@@ -2,6 +2,7 @@ function insertNameFromFirestore() {
     // Check if the user is logged in:
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
+
             console.log(user.uid); // Let's know who the logged-in user is by logging their UID
             currentUser = db.collection("users").doc(user.uid); // Go to the Firestore document of the user
             currentUser.get().then(userDoc => {
@@ -12,13 +13,45 @@ function insertNameFromFirestore() {
                 var myArray = userName.split(" ");
                 document.getElementById("name-goes-here").innerText = myArray[0];
             })
+
         } else {
-            console.log("No user is logged in."); // Log a message when no user is logged in
+            // No user is signed in.
         }
     })
 }
 
-insertNameFromFirestore();
+function createUserDB(){
+    firebase.auth().onAuthStateChanged(user =>{
+
+        if (user){
+
+            let doc = db.collection("users").doc(user.uid);
+
+            doc.get().then( DOC => {
+                if (!DOC.exists){
+                    console.log("DOES NOT EXIST");
+                    doc.set({
+                        name: user.displayName,
+                        resources: 50
+                    });
+                    doc.collection("game").doc("farmerCat").set({
+                        power: 50,
+                        health: 50
+                    });
+                }
+                else{
+                    console.log("exists")
+                }
+            });
+
+            
+        }
+
+    });
+}
+
+createUserDB();
+getNameFromAuth(); //run the function
 
 // Get the elements by their ID
 var popupLink = document.getElementById("sleep-button");
