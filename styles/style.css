@@ -21,7 +21,7 @@ body {
 
 .grid-container {
     display: grid;
-    grid-template-rows: 10vh 50vh 40vh;
+    grid-template-rows: 10vh 40vh 40vh;
     background-color: #890f90;
 }
 
@@ -29,6 +29,7 @@ body {
     background-color: #4C0750;
     display: grid;
     grid-template-columns: 20vw 60vw 20vw;
+    font-family: 'Poppins', sans-serif;
 }
 
 .nav-bar>img {
