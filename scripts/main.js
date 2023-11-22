@@ -20,6 +20,8 @@ function insertNameFromFirestore() {
     })
 }
 
+insertNameFromFirestore()
+
 function createUserDB(){
     firebase.auth().onAuthStateChanged(user =>{
 
@@ -51,7 +53,6 @@ function createUserDB(){
 }
 
 createUserDB();
-getNameFromAuth(); //run the function
 
 // Get the elements by their ID
 var popupLink = document.getElementById("sleep-button");
