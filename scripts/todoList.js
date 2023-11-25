@@ -6,17 +6,31 @@ const user = db.collection("users").doc("hdZ49Qd3r33c9sSlWl2e");
 console.log(user);
 const taskList = user.collection("currentTasks");;
 
-function createTask(description) {
+function createTask(description, checked) {
     //create new <li> element
     let newTask = document.createElement("li");
-    newTask.innerHTML = "<div class='task-content'>" + description + "</div>";
     //give the <li> element the class task
     newTask.className = "task";
+    newTask.innerHTML = "<div class='task-content'>" + description + "</div>";
 
-    let editTask = document.createElement("div");
-    editTask.className = 'material-symbols-outlined editTask';
-    editTask.innerHTML = "edit";
-    newTask.appendChild(editTask);
+    //create checked/unchecked
+    let checkedTask = document.createElement("div");
+    checkedTask.className = 'material-symbols-outlined checkedTask';
+
+    if (!checked) {
+        newTask.style.filter = "brightness(100%)";
+        checkedTask.innerHTML = "radio_button_unchecked";
+    } else {
+        newTask.style.filter = "brightness(20%)";
+        checkedTask.innerHTML = "radio_button_checked";
+    }
+
+    newTask.insertBefore(checkedTask, newTask.children[0]);
+
+    // let editTask = document.createElement("div");
+    // editTask.className = 'material-symbols-outlined editTask';
+    // editTask.innerHTML = "edit";
+    // newTask.appendChild(editTask);
 
     //creates delete icon
     //adds it to task
@@ -24,6 +38,7 @@ function createTask(description) {
     deleteX.className = 'material-symbols-outlined deleteTask';
     deleteX.innerHTML = "delete";
     newTask.appendChild(deleteX);
+
 
     //add the <li> to listOfTasks
     listOfTasks.appendChild(newTask);
@@ -57,10 +72,11 @@ function printTaskList() {
 
             //get the description of the task
             let description = doc.data().description;
+            let checked = doc.data().checked;
 
             //creates new html <li> element
             //with the task description in the innerHTML
-            createTask(description);
+            createTask(description, checked);
         })
     });
 }
@@ -106,23 +122,65 @@ async function addTask() {
 }
 addItem.addEventListener("click", addTask);
 
-function deleteTask() {
+// this not working cuz i be assigning two events to a single object
+// function completeTask() {
+//     listOfTasks.onclick = (event => {
+//         console.log(event.target.classList.contains("checkedTask"))
+//         if (event.target.classList.contains("checkedTask")) {
+
+//             // finds where the delete and edit icons are
+//             let styleIndex = event.target.parentElement.innerHTML.indexOf('<div class="material-symbols-outlined deleteTask">');
+//             // gets only the checked icon and task description
+//             let taskDescription = event.target.parentElement.innerHTML.substring(0, styleIndex);
+
+//             // removes checked icon
+//             taskDescription = taskDescription.replace('<div class="material-symbols-outlined checkedTask">', '');
+//             taskDescription = taskDescription.replace('d</div>');
+
+//             // gets only the task description; gets rid of the div wrapping around it
+//             styleIndex = taskDescription.indexOf('>');
+//             taskDescription = taskDescription.substring(styleIndex + 1);
+//             styleIndex = taskDescription.indexOf('<');
+//             taskDescription = taskDescription.substring(0, styleIndex);
+
+//             taskList.get().then(querySnapshot => {
+//                 querySnapshot.forEach(doc => {
+//                     if (doc.data().description == taskDescription) {
+//                         // variable is named 'c' for now, change later
+//                         let c = doc.data().checked;
+//                         console.log(c);
+//                     }
+//                 });
+//             });
+//         }
+//         isTaskListEmpty();
+//     });
+// }
+// listOfTasks.addEventListener("click", completeTask);
+
+function taskActions() {
     listOfTasks.onclick = (event => {
+        console.log("delete: ", event.target.classList.contains("deleteTask"));
+        console.log("check: ", event.target.classList.contains("checkedTask"))
         if (event.target.classList.contains("deleteTask")) {
             // removes task from the hmtl
             event.target.parentElement.remove();
 
-            // finds where the icons are
+            // finds where the delete and edit icons are
             let styleIndex = event.target.parentElement.innerHTML.indexOf('<div class="material-symbols-outlined deleteTask">');
-            console.log(styleIndex);
-            // gets only the task description
+            // gets only the checked icon and task description
             let taskDescription = event.target.parentElement.innerHTML.substring(0, styleIndex);
+
+            // removes checked icon
+            taskDescription = taskDescription.replace('<div class="material-symbols-outlined checkedTask">', '');
+            taskDescription = taskDescription.replace('d</div>');
+
+            // gets only the task description; gets rid of the div wrapping around it
             styleIndex = taskDescription.indexOf('>');
             taskDescription = taskDescription.substring(styleIndex + 1);
             styleIndex = taskDescription.indexOf('<');
             taskDescription = taskDescription.substring(0, styleIndex);
 
-            console.log(taskDescription);
             // gets currentTasks from firebase
             taskList.get().then(querySnapshot => {
                 //iterates through each document
@@ -137,7 +195,43 @@ function deleteTask() {
                 })
                 isTaskListEmpty();
             })
+        } else if (event.target.classList.contains("checkedTask")) {
+            // finds where the delete and edit icons are
+            let styleIndex = event.target.parentElement.innerHTML.indexOf('<div class="material-symbols-outlined deleteTask">');
+            // gets only the checked icon and task description
+            let taskDescription = event.target.parentElement.innerHTML.substring(0, styleIndex);
+
+            // removes checked icon
+            taskDescription = taskDescription.replace('<div class="material-symbols-outlined checkedTask">', '');
+            taskDescription = taskDescription.replace('d</div>', '');
+
+            // gets only the task description; gets rid of the div wrapping around it
+            styleIndex = taskDescription.indexOf('>');
+            taskDescription = taskDescription.substring(styleIndex + 1);
+            styleIndex = taskDescription.indexOf('<');
+            taskDescription = taskDescription.substring(0, styleIndex);
+
+            taskList.get().then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    if (doc.data().description == taskDescription) {
+                        // variable is named 'c' for now, change later
+                        let newChecked = !doc.data().checked;
+                        doc.ref.update({
+                            checked: newChecked
+                        });
+
+                        // updates html to set brightness depending if task is checked/unchecked
+                        if (!newChecked) {
+                            event.target.parentElement.style.filter = "brightness(100%)";
+                            event.target.innerHTML = "radio_button_unchecked";
+                        } else {
+                            event.target.parentElement.style.filter = "brightness(20%)";
+                            event.target.innerHTML = "radio_button_checked";
+                        }
+                    }
+                });
+            });
         }
     });
 }
-deleteTask();
+taskActions();
