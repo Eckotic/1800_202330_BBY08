@@ -53,6 +53,7 @@ function createUserDB(){
 }
 
 createUserDB();
+insertNameFromFirestore(); //run the function
 
 // Get the elements by their ID
 var popupLink = document.getElementById("sleep-button");
