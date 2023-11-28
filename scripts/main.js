@@ -22,6 +22,7 @@ function insertNameFromFirestore() {
 
 insertNameFromFirestore()
 
+//adds user to the database
 function createUserDB(){
     firebase.auth().onAuthStateChanged(user =>{
 
@@ -29,6 +30,7 @@ function createUserDB(){
 
             let doc = db.collection("users").doc(user.uid);
 
+            //if user is NOT in the database already...
             doc.get().then( DOC => {
                 if (!DOC.exists){
                     console.log("DOES NOT EXIST");
@@ -233,17 +235,41 @@ function finishSession() {
 
 }
 
+
+
 function sleepSession() {
 
     sessionWindow.style.display = "block";
 
+    
     const sleepTime = displayTime.split(":");
 
     const sleepMinutes = sleepTime[1];
     const sleepHours = sleepTime[0];
 
+    const game = db.collection("users").doc("xYwKXL8oCeTrSLyuwjbXYodDhCI2").collection("game").doc("userInfo");
+
+    //minutes slept * (1 + ((1 to 5) / 10))            
+    const multiplier = (1 + (((Math.floor(Math.random() * 5)) + 1) / 10))
+    const resourcesGained = Math.floor(sleepMinutes * multiplier); 
+
+     //get user doc then...
+     game.get().then( DOC => {
+
+        //get user data for "resources"
+        let resources = DOC.data().resources;
+
+        //add resources to current amount
+        game.update({
+            resources: resources + resourcesGained
+        });
+
+    });
+
+
     document.getElementById("start-date").innerHTML = "Sleep Date Start: " + startDate;
     document.getElementById("end-date").innerHTML = "Sleep Date End: " + endDate;
     document.getElementById("sleep-length").innerHTML = "Length of Sleep: " + sleepHours + " Hours, " + sleepMinutes + " Minutes ";
+    document.getElementById("resources-gained-go-here").innerHTML = "Resources Gained: " + resourcesGained + " (" + multiplier + "x)";
 
 }
