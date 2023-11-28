@@ -128,3 +128,79 @@ body {
     float: right;
     cursor: pointer;
 }
+
+#popup-empty-text {
+    /* visibility: hidden; */
+    max-width: 160px;
+    background-color: #b48648;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+}
+
+#popup-same-text {
+    visibility: hidden;
+    max-width: 160px;
+    background-color: #b48648;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 2;
+}
+
+.popup-visible {
+    visibility: visible !important;
+    animation: fade-in, fade-out;
+    animation-fill-mode: forwards, forwards;
+    animation-duration: 2s, 2s;
+    animation-delay: 0s, 5s;
+}
+
+@media only screen and (min-width:1201px) and (max-width: 1900px) {
+
+    #popup-empty-text,
+    #popup-same-text {
+        transform: translate(150px, -60px);
+    }
+}
+
+@media only screen and (min-width:701px) and (max-width: 1200px) {
+
+    #popup-empty-text,
+    #popup-same-text {
+        transform: translate(100px, -60px);
+    }
+}
+
+@media only screen and (max-width:700px) {
+
+    #popup-empty-text,
+    #popup-same-text {
+        transform: translate(50px, -60px);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
