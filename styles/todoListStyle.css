@@ -1,11 +1,11 @@
 body {
     background-color: #890f90;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .navbar {
-    background-color: #4c0750
+    background-color: #4c0750;
 }
 
 .todo-list-container {
@@ -13,48 +13,42 @@ body {
     display: flex;
     align-items: first baseline;
     justify-content: center;
-    flex-direction: column
+    flex-direction: column;
 }
 
-@media only screen and (min-width:1281px) {
+@media only screen and (min-width:701px) {
     .todo-list-container {
-        width: 40%
-    }
-}
-
-@media only screen and (min-width:701px) and (max-width:1280px) {
-    .todo-list-container {
-        width: 40%
+        width: 40%;
     }
 }
 
 @media only screen and (max-width:700px) {
     .todo-list-container {
-        width: 80%
+        width: 80%;
     }
 }
 
 .todo-list-container :not(#item-content, #new-item, .deleteTask, .editTask, .task-content) {
-    width: 100%
+    width: 100%;
 }
 
 #task-list,
 .todo-list {
     background-color: plum;
-    border-radius: 20px
+    border-radius: 20px;
 }
 
 .todo-list {
     padding: 30px;
     display: flex;
-    align-items: center
+    align-items: center;
 }
 
 #task-list {
     flex-direction: column;
     margin-top: 10px;
     padding: 20px;
-    list-style: none
+    list-style: none;
 }
 
 #item-content {
@@ -63,24 +57,27 @@ body {
     border-style: solid;
     border-color: indigo;
     border-radius: 10px;
-    height: 50px
+    height: 50px;
 }
 
 #new-item {
     width: 10%;
+    height: 50px;
     text-align: center;
+    padding-top: 13px;
+    margin-left: 1px;
     border: 0;
     border-radius: 10px;
-    padding: 10px 25px;
-    margin-left: 10px;
     background-color: #32174d;
-    color: #fff
+    color: #fff;
+    user-select: none;
 }
 
 #new-item:hover {
     filter: brightness(.5);
-    cursor: pointer
+    cursor: pointer;
 }
+
 
 #noTasks,
 .task {
@@ -90,31 +87,120 @@ body {
     border-style: solid;
     border-color: indigo;
     background-color: #fff;
-    border-radius: 10px
+    border-radius: 10px;
 }
 
 .task {
-    display: flex
+    display: flex;
 }
 
 .task-content {
     display: inline-block;
     word-break: break-word;
     display: flex;
-    flex: 20
+    flex: 20;
+}
+
+.deleteTask,
+.editTask,
+.checkedTask {
+    display: flex;
+    flex: 1;
+    cursor: pointer;
+    user-select: none;
 }
 
 .deleteTask,
 .editTask {
-    display: flex;
-    flex: 1;
     float: right;
-    cursor: pointer
+    padding-left: 10px;
+}
+
+.checkedTask {
+    padding-right: 10px;
+    float: left;
 }
 
 #task-list:hover .deleteTask,
-#task-list:hover .editTask {
+#task-list:hover .editTask,
+#task-lst:hover .checkedTask {
     display: inline-flex;
     float: right;
-    cursor: pointer
+    cursor: pointer;
+}
+
+#popup-empty-text {
+    /* visibility: hidden; */
+    max-width: 160px;
+    background-color: #b48648;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+}
+
+#popup-same-text {
+    visibility: hidden;
+    max-width: 160px;
+    background-color: #b48648;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 2;
+}
+
+.popup-visible {
+    visibility: visible !important;
+    animation: fade-in, fade-out;
+    animation-fill-mode: forwards, forwards;
+    animation-duration: 2s, 2s;
+    animation-delay: 0s, 5s;
+}
+
+@media only screen and (min-width:1201px) and (max-width: 1900px) {
+
+    #popup-empty-text,
+    #popup-same-text {
+        transform: translate(150px, -60px);
+    }
+}
+
+@media only screen and (min-width:701px) and (max-width: 1200px) {
+
+    #popup-empty-text,
+    #popup-same-text {
+        transform: translate(100px, -60px);
+    }
+}
+
+@media only screen and (max-width:700px) {
+
+    #popup-empty-text,
+    #popup-same-text {
+        transform: translate(50px, -60px);
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
 }

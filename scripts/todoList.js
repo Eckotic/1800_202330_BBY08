@@ -1,22 +1,32 @@
 const taskContent = document.getElementById("item-content");
 const addItem = document.getElementById("new-item");
 const listOfTasks = document.getElementById("task-list");
-
 const user = db.collection("users").doc("hdZ49Qd3r33c9sSlWl2e");
-console.log(user);
 const taskList = user.collection("currentTasks");;
 
-function createTask(description) {
+function createTask(description, checked) {
     //create new <li> element
     let newTask = document.createElement("li");
-    newTask.innerHTML = "<div class='task-content'>" + description + "</div>";
     //give the <li> element the class task
     newTask.className = "task";
+    newTask.setAttribute("data-task-id", description);
+    newTask.innerHTML = "<div class='task-content'>" + description + "</div>";
 
-    let editTask = document.createElement("div");
-    editTask.className = 'material-symbols-outlined editTask';
-    editTask.innerHTML = "edit";
-    newTask.appendChild(editTask);
+    //create checked/unchecked
+    let checkedTask = document.createElement("div");
+    checkedTask.className = 'material-symbols-outlined checkedTask';
+
+    // updates html to set brightness depending if task is checked/unchecked
+    // also changes button icon
+    if (!checked) {
+        newTask.style.filter = "brightness(100%)";
+        checkedTask.innerHTML = "radio_button_unchecked";
+    } else {
+        newTask.style.filter = "brightness(20%)";
+        checkedTask.innerHTML = "radio_button_checked";
+    }
+
+    newTask.insertBefore(checkedTask, newTask.children[0]);
 
     //creates delete icon
     //adds it to task
@@ -25,19 +35,24 @@ function createTask(description) {
     deleteX.innerHTML = "delete";
     newTask.appendChild(deleteX);
 
+
     //add the <li> to listOfTasks
     listOfTasks.appendChild(newTask);
 }
 
 async function isTaskListEmpty() {
-    let count = 0;
+
+    // gets the task list collection from the firebase
     const querySnapshot = await taskList.get();
 
-    querySnapshot.forEach(doc => {
-        count++;
-    })
+    // checks if the task list is empty; if not, early return.
+    if (querySnapshot.size > 0) {
+        return;
+    }
 
-    if (count < 1 && document.getElementById("noTasks") == null) {
+    // checks if there is a 'no task' message
+    // creates one if there isn't
+    if (document.getElementById("noTasks") == null) {
         let newTask = document.createElement("li");
         newTask.innerHTML = "You have no tasks!";
         //give the <li> element the class task
@@ -57,10 +72,11 @@ function printTaskList() {
 
             //get the description of the task
             let description = doc.data().description;
+            let checked = doc.data().checked;
 
             //creates new html <li> element
             //with the task description in the innerHTML
-            createTask(description);
+            createTask(description, checked);
         })
     });
 }
@@ -68,16 +84,44 @@ printTaskList();
 
 async function addTask() {
     // gets the string inside taskContent
+
+    let sameTaskCancelled = false;
     let taskDescription = taskContent.value;
 
     // early return to not allow user to input an empty value
     if (taskDescription == "") {
-        // should add message telling user to input text
+        // toggles popup when task content is empty
+        let popup = document.getElementById("popup-empty-text");
+        popup.classList.toggle("popup-visible");
+        // make it so popup-visible is toggled off after animation plays
+        setTimeout(() => { popup.classList.toggle("popup-visible") }, 7000);
         return;
     }
 
-    // gets taskNumber
-    const doc = await user.get();
+    // gets currentTasks from firebase
+    await taskList.get().then(querySnapshot => {
+        //iterates through each document
+        querySnapshot.forEach(doc => {
+            // checks if the task description equals the taskID in the html
+            if (doc.data().description == taskDescription) {
+                sameTaskCancelled = true;
+            }
+        })
+        isTaskListEmpty();
+    });
+
+    if (sameTaskCancelled) {
+        // toggles popup when task content is empty
+        let popup = document.getElementById("popup-same-text");
+        popup.classList.toggle("popup-visible");
+        // make it so popup-visible is toggled off after animation plays
+        setTimeout(() => { popup.classList.toggle("popup-visible") }, 7000);
+        return;
+    }
+
+    // gets taskNumber from firebase
+    let doc = await user.get();
+
     let taskNumber = doc.data().taskNumber;
 
     // increments taskNumber
@@ -93,42 +137,36 @@ async function addTask() {
     });
 
     // creates new task in the html
-    createTask(taskDescription);
+    createTask(taskDescription, false);
     // empties the textbox
     taskContent.value = "";
 
     // deletes the default message in the situation where no tasks exist
-    try {
+    if (document.getElementById("noTasks") != null) {
         document.getElementById("noTasks").remove();
-    } catch {
-        console.log("ELEMENT WITH 'noTask' ID DOES NOT EXIST");
     }
 }
 addItem.addEventListener("click", addTask);
 
-function deleteTask() {
+function taskActions() {
     listOfTasks.onclick = (event => {
-        if (event.target.classList.contains("deleteTask")) {
+
+        // gets the button user clicked on; gets the li element if user doesn't click a button
+        let clickTarget = event.target;
+
+        if (clickTarget.classList.contains("deleteTask")) {
             // removes task from the hmtl
-            event.target.parentElement.remove();
+            clickTarget.parentElement.remove();
 
-            // finds where the icons are
-            let styleIndex = event.target.parentElement.innerHTML.indexOf('<div class="material-symbols-outlined deleteTask">');
-            console.log(styleIndex);
-            // gets only the task description
-            let taskDescription = event.target.parentElement.innerHTML.substring(0, styleIndex);
-            styleIndex = taskDescription.indexOf('>');
-            taskDescription = taskDescription.substring(styleIndex + 1);
-            styleIndex = taskDescription.indexOf('<');
-            taskDescription = taskDescription.substring(0, styleIndex);
+            // gets the task-id
+            let taskID = clickTarget.parentElement.getAttribute("data-task-id");
 
-            console.log(taskDescription);
             // gets currentTasks from firebase
             taskList.get().then(querySnapshot => {
                 //iterates through each document
                 querySnapshot.forEach(doc => {
-                    // checks if the task description equals the task description in the html
-                    if (doc.data().description == taskDescription) {
+                    // checks if the task description equals the taskID in the html
+                    if (doc.data().description == taskID) {
                         // deletes the task from firebase
                         doc.ref.delete();
                         // early return because each task is unique
@@ -137,7 +175,34 @@ function deleteTask() {
                 })
                 isTaskListEmpty();
             })
+        } else if (clickTarget.classList.contains("checkedTask")) {
+
+            // gets the li element
+            // gets the task-id
+            let taskID = clickTarget.parentElement.getAttribute("data-task-id");
+
+            taskList.get().then(querySnapshot => {
+                querySnapshot.forEach(doc => {
+                    if (doc.data().description == taskID) {
+                        /// inverts current checked status
+                        let newChecked = !doc.data().checked;
+                        doc.ref.update({
+                            checked: newChecked
+                        });
+
+                        // updates html to set brightness depending if task is checked/unchecked
+                        // also changes button icon
+                        if (!newChecked) {
+                            clickTarget.parentElement.style.filter = "brightness(100%)";
+                            clickTarget.innerHTML = "radio_button_unchecked";
+                        } else {
+                            clickTarget.parentElement.style.filter = "brightness(20%)";
+                            clickTarget.innerHTML = "radio_button_checked";
+                        }
+                    }
+                });
+            });
         }
     });
 }
-deleteTask();
+taskActions();

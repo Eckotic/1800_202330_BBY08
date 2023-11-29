@@ -27,20 +27,21 @@
 
 
     <link rel="stylesheet" href="./styles/todoListStyle.css">
-</head> 
+
+    <script src="./scripts/script.js"></script>
+</head>
 
 <body>
-    <!-- our own navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
 
     <div class="todo-list-container">
         <div class="todo-title">
             <h2>ToDo</h2>
-            <!-- add icon here eventually lol -->
         </div>
         <div class="todo-list">
-            <input type="text" id="item-content" placeholder="Enter a task"></textarea>
-            <!-- <input type="text" id="item-content" placeholder="Enter a task" /> -->
+            <span id="popup-same-text">Task already exists</span>
+            <span id="popup-empty-text">Tasks can not be empty</span>
+            <textarea id="item-content" class="popup" placeholder="Enter a task"></textarea>
             <div id="new-item">
                 <span class="material-symbols-outlined">
                     add
@@ -55,6 +56,7 @@
     <script src="./scripts/firebaseAPI_TEAM08.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/todoList.js"></script>
+    <script src="./scripts/loginCheck.js"></script>
 
 </body>
 

@@ -1,5 +1,5 @@
 //declaring variables waw
-const selectedCat = "farmerCat";
+var selectedCat = "farmerCat";
 // const selectedCat = db.collection("users").doc("xYwKXL8oCeTrSLyuwjbXYodDhCI2").collection("game").doc("userStats");
 const game = db.collection("users").doc("xYwKXL8oCeTrSLyuwjbXYodDhCI2").collection("game").doc("userInfo");
 const FieldValue = firebase.firestore.FieldValue;
@@ -10,6 +10,13 @@ const resourcesDisplay = document.getElementById("resources-goes-here");
 const powerDisplay = document.getElementById("power-goes-here");
 const nameDisplay = document.getElementById("name-goes-here");
 const healthDisplay = document.getElementById("health-goes-here");
+
+const catImg = document.getElementById("cat-img");
+const farmerCatBtn = document.getElementById("cat0");
+const wizardCatBtn = document.getElementById("cat1");
+
+const cats = ["farmerCat", "wizardCat"];
+
 
 var upgrading = false;
 
@@ -82,5 +89,17 @@ function upgradeStats(){
 
 }
 
+function changeCat(cat){
+    var filePath = "./images/cat" + cat + ".png";
+    catImg.src = filePath;
+    selectedCat = cats[cat];
+    updateStats();
+
+    console.log(filePath);
+    console.log(cat);
+}
+
 //on click, upgrade power stat
 upgradeBtn.addEventListener("click", upgradeStats); 
+farmerCatBtn.addEventListener("click", changeCat.bind(this, 0)); 
+wizardCatBtn.addEventListener("click", changeCat.bind(this, 1)); 
