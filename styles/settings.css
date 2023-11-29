@@ -1,0 +1,59 @@
+body {
+    background: #f3f3f3;
+    grid-template-rows: 20vh;
+}
+
+.nav-bar {
+    background: #dadada;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: grid;
+    grid-template-columns: 10vw 90vw;
+}
+
+.nav-bar a {
+    margin: auto;
+    color: black;
+}
+
+.nav-bar h1 {
+    padding-right: 10vw;
+}
+
+.profile-picture {
+    text-align: center;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.profile-picture label {
+    cursor: pointer;
+}
+
+#pfp {
+    font-size: 20vh;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin-top: 20px;
+}
+
+.input-field { 
+    text-align: center;
+}
+
+.input-field label {
+    padding-top: 20px;
+}
+
+.input-field input {
+    width: 60vw;
+}
+
+.edit-buttons {
+    margin: 25px;
+    text-align: center;
+}

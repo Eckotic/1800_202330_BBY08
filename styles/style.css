@@ -76,7 +76,8 @@ body {
 
 .dropdown-content {
     display: none;
-    min-width: 50vw;
+    min-width: 20vh;
+    right: 0vw;
     position: absolute;
     background-color: #f9f9f9;
     min-height: 100vh;
@@ -86,7 +87,8 @@ body {
 
 .dropdown-content a {
     color: black;
-    padding: 12px 16px;
+    padding-left: 10px;
+    display: flex;
     text-decoration: none;
 }
 

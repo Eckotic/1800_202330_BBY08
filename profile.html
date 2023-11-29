@@ -27,46 +27,39 @@
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <!-- Link to styles of your own -->
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/tracker.css">
+    <link rel="stylesheet" href="./styles/settings.css">
 </head>
 
 <body>
     <body>
-        <!-- our own navbar goes here -->
-        <nav id="navbarPlaceholder"></nav>
     
-        <div class="main-container">
-            <div class="span-container">
-                    <label>
-                        <input type="radio" name="radio" checked>
-                        <span>D</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="radio">
-                        <span>W</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="radio">
-                        <span>M</span>
-                    </label>
-            </div>
-            <div class="date-container">
-                <input id="buttons" type="button" class="date-carousel-prev" value="&lt;" onclick="setDayBack()">
-                <label id="date-selector" for="buttons">DATE</label>
-                <input id="buttons" type="button" class="date-carousel-next" value="&gt;" onclick="setDayNext()">
-            </div>
-            <div class="sleep-history">
-
-            </div>
-            <div class="sleep schedule">
-
-            </div>
+        <div class="nav-bar">
+            <a href="./main.html"><span class="material-symbols-outlined">arrow_back_ios_new</span></a>
+            <h1>Edit Profile</h1>
+        </div>
+        <div class="profile-picture">
+            <img id="pfp" src="./images/profile-icon.webp"><br>
+            <label for="edit-pfp">
+                <span id="edit-icon" class="material-symbols-outlined">edit</span>
+                <input id="edit-pfp" type="file" accept="image/*" onchange="document.getElementById('pfp').src = window.URL.createObjectURL(this.files[0])">
+            </label>
+        </div>
+        <div class="input-field">
+            <label for="name">Name</label><br><input id="name" type="text" disabled><br>
+            <label for="email">Email</label><br><input id="email" type="text" disabled><br>
+            <label for="country">Country</label><br><input id="country" type="text" disabled><br>
+            <label for="school">School</label><br><input id="school" type="text" disabled><br>
+            <label for="number">Number</label><br><input id="number" type="text" disabled><br>
+            <label for="description">Brief Description</label><br><input id="description" type="text" disabled>
+        </div>
+        <div class="edit-buttons">
+            <button class="btn btn-secondary btn-sm" id="edit" onclick="edit()">Edit</button>
+            <button type="submit" class="btn btn-primary btn-sm" id="save" onclick="save()">Save Changes</button>
         </div>
 
         <script src="./scripts/firebaseAPI_TEAM08.js"></script>
         <script src="./scripts/skeleton.js"></script>
-        <script src="./scripts/tracker.js"></script>
+        <script src="./scripts/profile.js"></script>
     
     </body>
 </body>
