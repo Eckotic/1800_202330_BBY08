@@ -1,8 +1,8 @@
 //declaring variables waw
-var selectedCat = "farmerCat";
-// const selectedCat = db.collection("users").doc("xYwKXL8oCeTrSLyuwjbXYodDhCI2").collection("game").doc("userStats");
+var selectedCat = "fisherCat";
 const game = db.collection("users").doc("xYwKXL8oCeTrSLyuwjbXYodDhCI2").collection("game").doc("userInfo");
 const FieldValue = firebase.firestore.FieldValue;
+let initialLoad = true;
 
 //links html to the js, waw
 const upgradeBtn = document.getElementById("upgrade-button");
@@ -12,11 +12,8 @@ const nameDisplay = document.getElementById("name-goes-here");
 const healthDisplay = document.getElementById("health-goes-here");
 
 const catImg = document.getElementById("cat-img");
-const farmerCatBtn = document.getElementById("cat0");
-const wizardCatBtn = document.getElementById("cat1");
-
-const cats = ["farmerCat", "wizardCat"];
-
+const fisherCatBtn = document.getElementById("fisherCatBtn");
+const wizardCatBtn = document.getElementById("wizardCatBtn");
 
 var upgrading = false;
 
@@ -29,15 +26,16 @@ function updateStats(){
     let cat = db.collection("users").doc("xYwKXL8oCeTrSLyuwjbXYodDhCI2").collection("game").doc(selectedCat);
 
     cat.get().then( DOC => {
-
-        let power = DOC.data().power;
-        let powerIncrement = DOC.data().powerIncrement;
-
+        
         let health = DOC.data().health;
         let healthIncrement = DOC.data().healthIncrement;
 
         let name = DOC.data().name;
 
+        let power = DOC.data().power;
+        let powerIncrement = DOC.data().powerIncrement;
+
+        
 
         if (upgrading == true){
             cat.update({
@@ -58,8 +56,6 @@ function updateStats(){
     });
 }
 
-updateStats();
-
 //upgrade function (only power for now)
 function upgradeStats(){
 
@@ -69,7 +65,7 @@ function upgradeStats(){
         //get user data for "resources"
         let resources = DOC.data().resources;
 
-        if (resources > 0){
+        if (resources > 0 && initialLoad == false){
 
             //reduce resources by 1, increase power by 1
             game.update({
@@ -83,23 +79,24 @@ function upgradeStats(){
 
         }
         else {
-            console.log("No resources left :(");
+            resourcesDisplay.innerHTML = "Resources left: " + resources;
+            updateStats();
+            initialLoad = false;
         }
     });
 
 }
 
-function changeCat(cat){
-    var filePath = "./images/cat" + cat + ".png";
-    catImg.src = filePath;
-    selectedCat = cats[cat];
-    updateStats();
+upgradeStats();
 
-    console.log(filePath);
-    console.log(cat);
+function changeCat(cat){
+    var filePath = "./images/" + cat + "Cat.png";
+    catImg.src = filePath;
+    selectedCat = cat + "Cat";
+    updateStats();
 }
 
 //on click, upgrade power stat
 upgradeBtn.addEventListener("click", upgradeStats); 
-farmerCatBtn.addEventListener("click", changeCat.bind(this, 0)); 
-wizardCatBtn.addEventListener("click", changeCat.bind(this, 1)); 
+fisherCatBtn.addEventListener("click", changeCat.bind(this, "fisher")); 
+wizardCatBtn.addEventListener("click", changeCat.bind(this, "wizard")); 
