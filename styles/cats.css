@@ -20,6 +20,8 @@ body {
 #cat-img {
     top: auto;
     width: 75%;
+    background-color: #c040c7;
+    border-radius: 15%;
 }
 
 #stats-container {

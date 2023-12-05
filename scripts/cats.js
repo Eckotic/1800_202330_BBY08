@@ -14,6 +14,10 @@ const healthDisplay = document.getElementById("health-goes-here");
 const catImg = document.getElementById("cat-img");
 const fisherCatBtn = document.getElementById("fisherCatBtn");
 const wizardCatBtn = document.getElementById("wizardCatBtn");
+const warriorCatBtn = document.getElementById("warriorCatBtn");
+const heroCatBtn = document.getElementById("heroCatBtn");
+const roombaCatBtn = document.getElementById("roombaCatBtn");
+const medicCatBtn = document.getElementById("medicCatBtn");
 
 var upgrading = false;
 
@@ -100,3 +104,7 @@ function changeCat(cat){
 upgradeBtn.addEventListener("click", upgradeStats); 
 fisherCatBtn.addEventListener("click", changeCat.bind(this, "fisher")); 
 wizardCatBtn.addEventListener("click", changeCat.bind(this, "wizard")); 
+warriorCatBtn.addEventListener("click", changeCat.bind(this, "warrior")); 
+heroCatBtn.addEventListener("click", changeCat.bind(this, "hero")); 
+medicCatBtn.addEventListener("click", changeCat.bind(this, "medic")); 
+roombaCatBtn.addEventListener("click", changeCat.bind(this, "roomba")); 
