@@ -3,6 +3,7 @@ var selectedCat = "fisherCat";
 const game = db.collection("users").doc("xYwKXL8oCeTrSLyuwjbXYodDhCI2").collection("game").doc("userInfo");
 const FieldValue = firebase.firestore.FieldValue;
 let initialLoad = true;
+let refreshingHTML = true;
 
 //links html to the js, waw
 const upgradeBtn = document.getElementById("upgrade-button");
@@ -21,9 +22,6 @@ const medicCatBtn = document.getElementById("medicCatBtn");
 
 var upgrading = false;
 
-//little console log to see if the code is even up and running
-console.log("code is running")
-
 //updates power stat of a cat
 function updateStats(){
 
@@ -39,9 +37,8 @@ function updateStats(){
         let power = DOC.data().power;
         let powerIncrement = DOC.data().powerIncrement;
 
-        
-
         if (upgrading == true){
+
             cat.update({
 
                 power: power + powerIncrement,
@@ -57,6 +54,11 @@ function updateStats(){
         powerDisplay.innerHTML = "Power: " + power;
         healthDisplay.innerHTML = "Health: " + health;
 
+        //function needs to be run twice to properly update
+        if (refreshingHTML == true){
+            refreshingHTML = false;
+            updateStats();
+        }
     });
 }
 
@@ -71,7 +73,7 @@ function upgradeStats(){
 
         if (resources > 0 && initialLoad == false){
 
-            //reduce resources by 1, increase power by 1
+            //reduce resources by 1
             game.update({
                 resources: resources - 1
             });
@@ -79,11 +81,13 @@ function upgradeStats(){
             //update display
             resourcesDisplay.innerHTML = "Resources left: " + resources;
             upgrading = true;
+            refreshingHTML = true;
             updateStats();
 
         }
         else {
             resourcesDisplay.innerHTML = "Resources left: " + resources;
+            refreshingHTML = true;
             updateStats();
             initialLoad = false;
         }
@@ -97,6 +101,7 @@ function changeCat(cat){
     var filePath = "./images/" + cat + "Cat.png";
     catImg.src = filePath;
     selectedCat = cat + "Cat";
+    refreshingHTML = true;
     updateStats();
 }
 

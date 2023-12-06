@@ -130,7 +130,7 @@ body {
 }
 
 #popup-empty-text {
-    /* visibility: hidden; */
+    visibility: hidden;
     max-width: 160px;
     background-color: #b48648;
     color: #fff;

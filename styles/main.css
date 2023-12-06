@@ -4,9 +4,6 @@ body {
 
 #logo1 {
     position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 50%;
     width: 70px;
     height: 70px;
     margin: 0;
@@ -24,7 +21,7 @@ body {
     bottom: 0;
     color: white;
     font-size: 6vh;
-    background: -webkit-linear-gradient(#ffffff, #818181);
+    background: -webkit-linear-gradient(#ffc400, rgb(201, 180, 61));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     grid-row-start: 1;
@@ -37,7 +34,7 @@ body {
     color: white;
     font-size: 25pt;
     width: 50%;
-    height: 50%;
+    height: 40%;
     background: -webkit-linear-gradient(#ffc400, #deaa00);
     -webkit-text-fill-color: white;
     grid-row-start: 2;

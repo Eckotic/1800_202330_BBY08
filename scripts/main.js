@@ -33,7 +33,6 @@ function createUserDB(){
             //if user is NOT in the database already...
             doc.get().then( DOC => {
                 if (!DOC.exists){
-                    console.log("DOES NOT EXIST");
                     doc.set({
                         name: user.displayName,
                         resources: 50
