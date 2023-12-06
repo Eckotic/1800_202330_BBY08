@@ -2,6 +2,7 @@ const taskContent = document.getElementById("item-content");
 const addItem = document.getElementById("new-item");
 const listOfTasks = document.getElementById("task-list");
 const user = db.collection("users").doc("hdZ49Qd3r33c9sSlWl2e");
+const game = db.collection("users").doc("xYwKXL8oCeTrSLyuwjbXYodDhCI2").collection("game").doc("userInfo");
 const taskList = user.collection("currentTasks");;
 
 function createTask(description, checked) {
@@ -132,6 +133,7 @@ async function addTask() {
 
     // creates new task in the firebase
     await taskList.doc("task".concat(taskNumber)).set({
+        resourceGained: false,
         checked: false,
         description: taskDescription
     });
@@ -185,17 +187,33 @@ function taskActions() {
                 querySnapshot.forEach(doc => {
                     if (doc.data().description == taskID) {
                         /// inverts current checked status
-                        let newChecked = !doc.data().checked;
+                        let isChecked = doc.data().checked;
+                        let resourceGained = doc.data().resourceGained;
+
                         doc.ref.update({
-                            checked: newChecked
+                            checked: true
                         });
 
                         // updates html to set brightness depending if task is checked/unchecked
                         // also changes button icon
-                        if (!newChecked) {
-                            clickTarget.parentElement.style.filter = "brightness(100%)";
-                            clickTarget.innerHTML = "radio_button_unchecked";
-                        } else {
+                        if (isChecked && resourceGained == false) {
+
+                            game.get().then( DOC => {
+
+                                let resources = DOC.data().resources;
+                                console.log("added resource")
+
+                                game.update({
+                                    resources: resources + 5
+                                });
+                                doc.ref.update({
+                                    resourceGained: true
+                                });
+
+                                console.log(resources);
+
+                            });
+
                             clickTarget.parentElement.style.filter = "brightness(20%)";
                             clickTarget.innerHTML = "radio_button_checked";
                         }
