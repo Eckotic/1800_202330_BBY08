@@ -3,3 +3,8 @@
 node_modules/
 .vscode/
 firebaseAPI_TEAM08.js
+*.json
+404.html
+*.rules
+*.firebaserc
+*.firebase
