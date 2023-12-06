@@ -71,11 +71,11 @@ function upgradeStats(){
         //get user data for "resources"
         let resources = DOC.data().resources;
 
-        if (resources > 0 && initialLoad == false){
+        if (resources > 49 && initialLoad == false){
 
-            //reduce resources by 1
+            //reduce resources by 50
             game.update({
-                resources: resources - 1
+                resources: resources - 50
             });
 
             //update display

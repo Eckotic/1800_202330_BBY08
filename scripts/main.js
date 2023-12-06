@@ -35,9 +35,35 @@ function createUserDB(){
                 if (!DOC.exists){
                     doc.set({
                         name: user.displayName,
-                        resources: 50
+                        resources: 50,
+                        country: "",
+                        description: "",
+                        email: "",
+                        number: "",
+                        school: "",
+                        taskNumber: 0
                     });
                     doc.collection("game").doc("farmerCat").set({
+                        power: 50,
+                        health: 50
+                    });
+                    doc.collection("game").doc("warriorCat").set({
+                        power: 50,
+                        health: 50
+                    });
+                    doc.collection("game").doc("roombaCat").set({
+                        power: 50,
+                        health: 50
+                    });
+                    doc.collection("game").doc("wizardCat").set({
+                        power: 50,
+                        health: 50
+                    });
+                    doc.collection("game").doc("heorCat").set({
+                        power: 50,
+                        health: 50
+                    });
+                    doc.collection("game").doc("medicCat").set({
                         power: 50,
                         health: 50
                     });
