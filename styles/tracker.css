@@ -1,78 +1,76 @@
-.main-container {
-    display: grid;
-    grid-template-rows: 7vh 7vh 50vh 30vh;
+#sleep-goal-popup {
+    position: fixed;
+    width: 300px;
+    height: 400px;
+    background: white;
+    border: 1px solid black;
+    padding: 10px;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    display: none;
 }
 
-.span-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-    justify-content: center;
+#sleep-goal-popup h1 {
+    text-align: center;
 }
 
-.span-container input[type="radio"] {
-    clip: rect(0 0 0 0);
-    clip-path: inset(100%);
-    height: 1px;
-    overflow: hidden;
+#cancel-goal {
     position: absolute;
-    width: 1px;
+    bottom: 0px;
+    right: 80px;
+    margin: 10px;
 }
 
-.span-container input[type="radio"]:checked+span {
-    box-shadow: 0 0 0 0.0625em #0043ed;
-    background-color: #dee7ff;
-    z-index: 1;
-    color: #0043ed;
+#add-goal {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin: 10px;
 }
 
-label span {
-    width: 20vw;
-    display: block;
-    cursor: pointer;
-    background-color: #fff;
-    padding: 0.375em .75em;
-    position: relative;
-    margin-left: .0625em;
-    box-shadow: 0 0 0 0.0625em #b5bfd9;
-    letter-spacing: .05em;
-    color: #3e4963;
-    text-align: center;
-    transition: background-color .5s ease;
+.sleep-history a {
+    background-color: #c040c7;
+    width: 100vw;
+    height: 13vh;
+    text-align: left;
+    color :white;
+    margin-top: 10px;
 }
 
-label:first-child span {
-    border-radius: .375em 0 0 .375em;
+.sleep-history a:hover {
+    background-color: #c453ca;
 }
 
-label:last-child span {
-    border-radius: 0 .375em .375em 0;
+#session-popup {
+    position: fixed;
+    width: 400px;
+    height: 500px;
+    background: white;
+    border: 1px solid black;
+    padding: 10px;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    display: none;
 }
 
-.date-container {
-    color: white;
-    text-align: center;
-    margin-top: 2rem;
+#sleep-game {
+    position: absolute;
+    bottom: 0px;
+    right: 50px;
+    margin: 10px;
 }
 
-.date-carousel-prev,
-.date-carousel-next {
-    background-color: transparent;
-    color: white;
-    border: none;
-    font-size: 40px;
-}
-
-.date-carousel-next {
-    float: right;
-    margin-right: 15px;
-}
-
-.date-carousel-prev {
-    float: left;
-    margin-left: 15px;
-}
-
-#date-selector {
-    font-size: 40px;
+#sleep-log {
+    position: absolute;
+    bottom: 0px;
+    left: 50px;
+    margin: 10px;
 }

@@ -17,6 +17,8 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 
+    <link rel="icon" type="image/png" href="./images/logo.png">
+
     <!-- Other libraries go here -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -32,35 +34,42 @@
 </head>
 
 <body>
+
     <body>
         <!-- our own navbar goes here -->
         <nav id="navbarPlaceholder"></nav>
-    
+
         <div class="main-container">
-            <div class="span-container">
-                    <label>
-                        <input type="radio" name="radio" checked>
-                        <span>D</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="radio">
-                        <span>W</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="radio">
-                        <span>M</span>
-                    </label>
-            </div>
-            <div class="date-container">
-                <input id="buttons" type="button" class="date-carousel-prev" value="&lt;" onclick="setDayBack()">
-                <label id="date-selector" for="buttons">DATE</label>
-                <input id="buttons" type="button" class="date-carousel-next" value="&gt;" onclick="setDayNext()">
-            </div>
             <div class="sleep-history">
-
+                <h1 class="text-white mt-4 m-3">Sleep History</h1>
+                <a class="btn" id="date-1">
+                    <h4 id="day-1">Date</h4>
+                    <p id="length-1">Sleep length</p>
+                </a>
+                <a class="btn" id="date-2">
+                    <h4 id="day-2">Date</h4>
+                    <p id="length-2">Sleep length</p>
+                </a>
+                <a class="btn" id="date-3">
+                    <h4 id="day-3">Date</h4>
+                    <p id="length-3">Sleep length</p>
+                </a>
+                <a class="btn" id="date-4">
+                    <h4 id="day-4">Date</h4>
+                    <p id="length-4">Sleep length</p>
+                </a>
             </div>
-            <div class="sleep schedule">
-
+            <h1 class="text-white mt-4 m-3">Sleep Goal</h1>
+            <div class="input-group sleep schedule">
+                <button class="btn btn-outline-light" type="button" id="Addbutton"><span class="material-symbols-outlined">add</span></button>
+                <input type="text" id="goal" class="form-control" placeholder="Add a sleep goal" disabled>
+            </div>
+            <div id="sleep-goal-popup"> 
+                <h1>Sleep Goal</h1>
+                <p>How many hours of sleep do you want per night?</p>         
+                <input type="text" id="goal-input"><br>              
+                <button class="btn btn-secondary btn-sm mt-5" id="cancel-goal">Cancel</button>
+                <button type="submit" class="btn btn-primary btn-sm mt-5" id="add-goal">Confirm</button>
             </div>
         </div>
 
@@ -68,7 +77,7 @@
         <script src="./scripts/skeleton.js"></script>
         <script src="./scripts/tracker.js"></script>
         <script src="./scripts/loginCheck.js"></script>
-    
+
     </body>
 </body>
 
