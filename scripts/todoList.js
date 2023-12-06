@@ -149,8 +149,8 @@ function addTask() {
 
             // increments taskNumber
             await user.update({
-                taskNumber: taskNumber + 1
-            })
+                taskNumber: firebase.firestore.FieldValue.increment(1)
+            });
             taskNumber++
 
             // creates new task in the firebase
@@ -198,7 +198,6 @@ function taskActions() {
                         })
                     })
                 } else if (clickTarget.classList.contains("checkedTask")) {
-
                     // gets the li element
                     // gets the task-id
                     let taskID = clickTarget.parentElement.getAttribute("data-task-id");
@@ -206,8 +205,7 @@ function taskActions() {
                     taskList.get().then(querySnapshot => {
                         querySnapshot.forEach(doc => {
                             if (doc.data().description == taskID) {
-                                /// inverts current checked status
-                                let isChecked = doc.data().checked;
+                                let isChecked = true;
                                 let resourceGained = doc.data().resourceGained;
 
                                 doc.ref.update({
@@ -217,7 +215,6 @@ function taskActions() {
                                 // updates html to set brightness depending if task is checked/unchecked
                                 // also changes button icon
                                 if (isChecked && resourceGained == false) {
-
                                     game.get().then(DOC => {
 
                                         let resources = DOC.data().resources;

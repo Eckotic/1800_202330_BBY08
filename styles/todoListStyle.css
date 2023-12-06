@@ -58,7 +58,6 @@ body {
     border-color: indigo;
     border-radius: 10px;
     height: 50px;
-    flex: 20;
 }
 
 #new-item {
@@ -166,6 +165,14 @@ body {
     #popup-empty-text,
     #popup-same-text {
         transform: translate(150px, -60px);
+    }
+
+    #new-item {
+        width: 10%;
+    }
+
+    .task-content {
+        width: 90%
     }
 }
 
