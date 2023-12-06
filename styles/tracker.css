@@ -18,14 +18,14 @@
     text-align: center;
 }
 
-#cancel-end-sleep-button {
+#cancel-goal {
     position: absolute;
     bottom: 0px;
     right: 80px;
     margin: 10px;
 }
 
-#confirm-end-sleep-button {
+#add-goal {
     position: absolute;
     bottom: 0px;
     right: 0px;
@@ -38,8 +38,39 @@
     height: 13vh;
     text-align: left;
     color :white;
+    margin-top: 10px;
 }
 
 .sleep-history a:hover {
     background-color: #c453ca;
+}
+
+#session-popup {
+    position: fixed;
+    width: 400px;
+    height: 500px;
+    background: white;
+    border: 1px solid black;
+    padding: 10px;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    display: none;
+}
+
+#sleep-game {
+    position: absolute;
+    bottom: 0px;
+    right: 50px;
+    margin: 10px;
+}
+
+#sleep-log {
+    position: absolute;
+    bottom: 0px;
+    left: 50px;
+    margin: 10px;
 }
