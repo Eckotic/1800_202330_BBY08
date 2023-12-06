@@ -5,6 +5,13 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
+#logo1 {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    margin: 0;
+}
+
 .btn-primary {
     background-color: #ffc400;
     border-color: #ffc400;

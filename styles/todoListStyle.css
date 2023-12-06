@@ -58,6 +58,7 @@ body {
     border-color: indigo;
     border-radius: 10px;
     height: 50px;
+    flex: 20;
 }
 
 #new-item {
@@ -98,7 +99,6 @@ body {
     display: inline-block;
     word-break: break-word;
     display: flex;
-    flex: 20;
 }
 
 .deleteTask,
@@ -175,6 +175,14 @@ body {
     #popup-same-text {
         transform: translate(100px, -60px);
     }
+
+    #new-item {
+        width: 15%;
+    }
+
+    .task-content {
+        width: 85%
+    }
 }
 
 @media only screen and (max-width:700px) {
@@ -182,6 +190,14 @@ body {
     #popup-empty-text,
     #popup-same-text {
         transform: translate(50px, -60px);
+    }
+
+    #new-item {
+        width: 17.5%;
+    }
+
+    .task-content {
+        width: 82.5%
     }
 }
 
