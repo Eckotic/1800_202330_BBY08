@@ -27,6 +27,7 @@ firebase.auth().onAuthStateChanged(user => {
             } else {
                 description.setAttribute("value", userDoc.data().description);
             }
+            
             profilePicture.setAttribute("src", userDoc.data().picture);
 
         })

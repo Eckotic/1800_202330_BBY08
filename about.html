@@ -28,7 +28,6 @@
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/tracker.css">
 </head>
 
 <body>
@@ -36,33 +35,25 @@
         <!-- our own navbar goes here -->
         <nav id="navbarPlaceholder"></nav>
     
-        <div class="main-container">
-            <div class="sleep-history">
-                <h1 class="text-white mt-4 m-3">Sleep History</h1>
-                <a class="btn">
-                    <h4>Date</h4>
-                    <p>Sleep length</p>
-                    <p>Math</p>
-                </a>
-            </div>
-            <h1 class="text-white mt-4 m-3">Sleep Goal</h1>
-            <div class="input-group sleep schedule">
-                <button class="btn btn-outline-light" type="button" id="Addbutton"><span class="material-symbols-outlined">add</span></button>
-                <input type="text" id="goal" class="form-control" placeholder="Add a sleep goal" disabled>
-            </div>
-            <div id="sleep-goal-popup"> 
-                <h1>Sleep Goal</h1>
-                <p>How many hours of sleep do you want per night?</p>         
-                <input type="text" id="goal-input"><br>              
-                <button class="btn btn-secondary btn-sm mt-5" id="cancel-goal">Cancel</button>
-                <button type="submit" class="btn btn-primary btn-sm mt-5" id="add-goal">Confirm</button>
+        <div class="card m-auto w-100 h-100" style="width: 18rem;">
+            <div class="card-body">
+              <h1 class="card-title display-3">About Us</h1>
+              <p class="card-text">EEPY World is a web application designed to help users get a good nights rest.
+                Our 3 main features include a sleep tracker, to-do list, and a sleep game that allows users a variety
+                of options to maintain a better sleep schedule.
+                <br><br>
+                Our names are Ethan, KC, and Raziel. Our main goal is to motivate people from around the world to live a healthier lifestyle by fixing their sleep habits.
+                <br><br>
+                This project was designed by a group of students at BCIT. 
+              </p>
             </div>
         </div>
 
+        
+
         <script src="./scripts/firebaseAPI_TEAM08.js"></script>
         <script src="./scripts/skeleton.js"></script>
-        <script src="./scripts/tracker.js"></script>
-        <script src="./scripts/loginCheck.js"></script>
+        <!-- <script src="./scripts/.js"></script> -->
     
     </body>
 </body>
