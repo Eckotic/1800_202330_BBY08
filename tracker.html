@@ -39,26 +39,22 @@
         <!-- our own navbar goes here -->
         <nav id="navbarPlaceholder"></nav>
 
+        <div class="container">
+            <h1></h1>
+            <p></p>
+        </div>
+
         <div class="main-container">
             <div class="sleep-history">
                 <h1 class="text-white mt-4 m-3">Sleep History</h1>
-                <a class="btn" id="date-1">
-                    <h4 id="day-1">Date</h4>
-                    <p id="length-1">Sleep length</p>
-                </a>
-                <a class="btn" id="date-2">
-                    <h4 id="day-2">Date</h4>
-                    <p id="length-2">Sleep length</p>
-                </a>
-                <a class="btn" id="date-3">
-                    <h4 id="day-3">Date</h4>
-                    <p id="length-3">Sleep length</p>
-                </a>
-                <a class="btn" id="date-4">
-                    <h4 id="day-4">Date</h4>
-                    <p id="length-4">Sleep length</p>
-                </a>
+                <div id="dates-go-here"></div>
             </div>
+            <template id="sleepTemplate">
+                <a class="btn" id="date-1">
+                    <h4 id="date">Date</h4>
+                    <p id="length">Sleep length</p>
+                </a>
+            </template>
             <h1 class="text-white mt-4 m-3">Sleep Goal</h1>
             <div class="input-group sleep schedule">
                 <button class="btn btn-outline-light" type="button" id="Addbutton"><span class="material-symbols-outlined">add</span></button>

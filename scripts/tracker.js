@@ -30,44 +30,31 @@ confirmButton.addEventListener("click", function () {
     goal.placeholder = goalInput.value;
 });
 
+function displayhistoryDynamically() {
+    let sleepTemplate = document.getElementById("sleepTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable. 
 
-const day1 = document.getElementById("day-1");
-const length1 = document.getElementById("length-1");
-const day2 = document.getElementById("day-2");
-const length2 = document.getElementById("length-2");
-const day3 = document.getElementById("day-3");
-const length3 = document.getElementById("length-3");
-const day4 = document.getElementById("day-4");
-const length4 = document.getElementById("length-4");
+    firebase.auth().onAuthStateChanged(user => {
 
-firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-        currentUser = db.collection("users").doc(user.uid).collection("sleephistory");
+        if (user) {
 
-        currentUser.doc("11.28.2023").get().then(userDoc => {
-            day1.innerHTML = "Date: 11.28.2023";
-            length1.innerHTML = "Sleep Length: " + userDoc.data().sleeplength;
+            db.collection("users").doc(user.uid).collection("sleephistory").get()   //the collection called "hikes"
+                .then(allSessions => {
+                    //var i = 1;  //Optional: if you want to have a unique ID for each hike
+                    allSessions.forEach(doc => { //iterate thru each doc
+                        var date = doc.id;       // get value of the "name" key
+                        var length = doc.data().sleeplength;  // get value of the "details" key
+                        let newcard = sleepTemplate.content.cloneNode(true);
+                        
+                        //update title and text and image
+                        newcard.querySelector('#date').innerHTML = date;
+                        newcard.querySelector('#length').innerHTML = "Sleep length: " + length;
 
+                        document.getElementById("dates-go-here").appendChild(newcard);
 
-        })
+                    })
+                })
+        }
+    })
+}
 
-        currentUser.doc("11.29.2023").get().then(userDoc => {
-            day2.innerHTML = "Date: 11.29.2023";
-            length2.innerHTML = "Sleep Length: " + userDoc.data().sleeplength;
-        })
-
-        currentUser.doc("12.05.2023").get().then(userDoc => {
-
-            day3.innerHTML = "Date: 12.05.2023";
-            length3.innerHTML = "Sleep Length: " + userDoc.data().sleeplength;
-
-        })
-
-        currentUser.doc("12.06.2023").get().then(userDoc => {
-            day4.innerHTML = "Date: 12.06.2023";
-            length4.innerHTML = "Sleep Length: " + userDoc.data().sleeplength;
-
-        })
-
-    };
-});
+displayhistoryDynamically();
