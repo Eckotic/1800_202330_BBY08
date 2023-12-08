@@ -2,6 +2,17 @@ const taskContent = document.getElementById("item-content");
 const addItem = document.getElementById("new-item");
 const listOfTasks = document.getElementById("task-list");
 
+/**
+ * Creates a new task in the HTML.
+ * 
+ * Takes user input or data from the firestore and creates a list element.
+ * Inside the list element is a div element that contains the contents of the task.
+ * Adds a checked icon and delete icon to the div element.
+ * Appends the list element to the HTML.
+ * 
+ * @param {String}  description content of a task
+ * @param {boolean} checked     state of task completion
+ */
 function createTask(description, checked) {
     //create new <li> element
     let newTask = document.createElement("li");
@@ -38,6 +49,14 @@ function createTask(description, checked) {
     listOfTasks.appendChild(newTask);
 }
 
+/**
+ * Prints a "No Task" message to the HTML.
+ * 
+ * Checks the size of the task list in the firestore.
+ * If greater than zero, return;
+ * Otherwise, create a list element that contains a message
+ * informing the user that they have no task.
+ */
 async function isTaskListEmpty() {
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
@@ -66,7 +85,12 @@ async function isTaskListEmpty() {
 
 }
 
-// get task docs from firebase and print them all
+/** 
+ * Prints all tasks to the HTML.
+ * 
+ * Gets task documents from firebase and assigns their description and checked status
+ * as the parametres when invokng the createTask function.
+ */
 function printTaskList() {
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
@@ -94,6 +118,15 @@ function printTaskList() {
 }
 printTaskList();
 
+/**
+ * Adds a task to the HTML and firestore.
+ * 
+ * Checks if user has inputted into the textbox and if the task already exists.
+ * If so, then show a popup informing the user.
+ * If not, then check if the "No Tasks" message exists in the HTML and deletes it.
+ * Invokes the createTask function, checked is false and the description is the user input.
+ * Creates a new document and stores the task in the firestore.
+ */
 function addTask() {
     firebase.auth().onAuthStateChanged(async (curUser) => {
         // gets the string inside taskContent
@@ -166,6 +199,16 @@ function addTask() {
 }
 addItem.addEventListener("click", addTask);
 
+/**
+ * Deletes task or checks task depending on which button is pressed.
+ * 
+ * Checks if the user has clicked on a task, then determines if they 
+ * pressed on either the delete button or check task button.
+ * If the delete button is pressed, then remove the task from the HTML and firestore,
+ * then check how many tasks the user has; invokes the isTaskListEmpty function.
+ * If the check task button is pressed, then change the brightness of the task, mark it as
+ * complete in the firestore, and reward the user with resources.
+ */
 function taskActions() {
     listOfTasks.onclick = (event => {
 
