@@ -42,19 +42,26 @@
 </head>
 
 <body>
+
+    <!-- Main container -->
     <div class="grid-container">
+        <!-- Nav bar -->
         <nav id="navbarPlaceholder"></nav>
         <div class="image">
             <h1>Hello, <span id="name-goes-here"></span></h1>
             <button id="sleep-button" class="btn btn-warning btn-lg" type="button">Sleep</button>
             <img src="./images/main.gif" id="main-img" alt="cat fishing">
         </div>
+
+        <!-- Hidden sleep popup confirmation -->
         <div id="sleep-popup">
             <p><span class="material-symbols-outlined">warning</span>Are you sure you want to activate sleep mode?</p>
             <input type="checkbox" id="ignore-sleep-popup"><label for="ignore-sleep-popup">Don't show again.</label>
             <button class="btn btn-secondary btn-sm" id="cancel-sleep-button">Cancel</button>
             <button type="submit" class="btn btn-primary btn-sm" id="confirm-sleep-button">Confirm</button>
         </div>
+
+        <!-- Hidden sleep session popup confirmation -->
         <div id="end-sleep-popup">
             <p><span class="material-symbols-outlined">warning</span>Are you sure you want to end your sleep session?
             </p>
@@ -64,6 +71,8 @@
             <button class="btn btn-secondary btn-sm" id="cancel-end-sleep-button">Cancel</button>
             <button type="submit" class="btn btn-primary btn-sm" id="confirm-end-sleep-button">Confirm</button>
         </div>
+
+        <!-- Hidden sleep session window -->
         <div id="session-popup">
             <span class="material-symbols-outlined" id="close-window">close</span>
             <div class="mt-2 mb-3 text-center">
@@ -93,6 +102,7 @@
                 Sleep</button>
         </div>
 
+        <!-- Carousel with all 3 main features -->
         <div class="feature-container">
             <div class="slider">
                 <div class="slides">
@@ -117,6 +127,7 @@
 
         <br><br><br><br>
 
+        <!-- Footer -->
         <footer class="navbar justify-content-evenly fixed-bottom text-white p-3">
             <div class="footer-container">
                 <a href="#sleep-tracker"><span class="material-symbols-outlined">monitoring</span></a>
@@ -125,12 +136,14 @@
             </div>
         </footer>
 
+        <!-- Hidden overlay for sleep mode -->
         <div id="overlay">
             <button id="end-session" class="btn btn-danger btn-lg">End Sleep Session</button>
         </div>
 
     </div>
 
+    <!-- Javascript -->
     <script src="./scripts/firebaseAPI_TEAM08.js"></script>
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/main.js"></script>

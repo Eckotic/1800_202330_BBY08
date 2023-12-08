@@ -92,7 +92,6 @@ var sessionWindow = document.getElementById("session-popup");
 var closeSessionButton = document.getElementById("close-window");
 var sleepLogButton = document.getElementById("sleep-log");
 var sleepGameButton = document.getElementById("sleep-game");
-
 var endSleepWindow = document.getElementById("end-sleep-popup");
 var endSession = document.getElementById("end-session");
 var confirmSessionButton = document.getElementById("confirm-end-sleep-button");
@@ -102,14 +101,17 @@ var ignoreButton2 = document.getElementById("ignore-end-sleep-popup");
 var ignore1 = false;
 var ignore2 = false;
 
+//close sleep session window
 sleepLogButton.addEventListener("click", function () {
     sessionWindow.style.display = "none";
 });
 
+//close sleep session window
 sleepGameButton.addEventListener("click", function () {
     sessionWindow.style.display = "none";
 });
 
+//close sleep session window
 closeSessionButton.addEventListener("click", function () {
     sessionWindow.style.display = "none";
 });
@@ -125,11 +127,13 @@ popupLink.addEventListener("click", function (event) {
         sleepMode();
     }
 });
+
 // Hide the pop-up window when the close button is clicked
 closeSleepButton.addEventListener("click", function () {
     popupWindow.style.display = "none";
 });
 
+//Close sleep window and start sleep mode
 confirmButton.addEventListener("click", function () {
     popupWindow.style.display = "none";
     if (ignoreButton1.checked) {
@@ -138,6 +142,7 @@ confirmButton.addEventListener("click", function () {
     sleepMode();
 });
 
+//Open a confirm end session window
 endSession.addEventListener("click", function (event) {
     if (ignore2 == false) {
         event.preventDefault();
@@ -156,6 +161,7 @@ endSession.addEventListener("click", function (event) {
     }
 });
 
+//Ends sleep session and closes window
 confirmSessionButton.addEventListener("click", function () {
     endSleepWindow.style.display = "none";
     if (ignoreButton2.checked) {
@@ -164,15 +170,18 @@ confirmSessionButton.addEventListener("click", function () {
     off();
 })
 
+//Closes sleep session warning
 cancelSessionButton.addEventListener("click", function () {
     endSleepWindow.style.display = "none";
 })
 
+//Shows overlay and starts timer
 function sleepMode() {
     document.getElementById("overlay").style.display = "block";
     startStopwatch();
 }
 
+//Ends sleep mode
 function off() {
     document.getElementById("overlay").style.display = "none";
     document.getElementById("sleep-button").innerHTML = "Sleep";

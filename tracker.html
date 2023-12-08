@@ -36,30 +36,35 @@
 <body>
 
     <body>
-        <!-- our own navbar goes here -->
+
+        <!-- Nav bar -->
         <nav id="navbarPlaceholder"></nav>
 
-        <div class="container">
-            <h1></h1>
-            <p></p>
-        </div>
-
+        <!-- Main container -->
         <div class="main-container">
+
+            <!-- sleep history container -->
             <div class="sleep-history">
                 <h1 class="text-white mt-4 m-3">Sleep History</h1>
                 <div id="dates-go-here"></div>
             </div>
+
+            <!-- sleep card template -->
             <template id="sleepTemplate">
                 <a class="btn" id="date-1">
                     <h4 id="date">Date</h4>
                     <p id="length">Sleep length</p>
                 </a>
             </template>
+
+            <!-- Sleep goal input -->
             <h1 class="text-white mt-4 m-3">Sleep Goal</h1>
             <div class="input-group sleep schedule">
                 <button class="btn btn-outline-light" type="button" id="Addbutton"><span class="material-symbols-outlined">add</span></button>
                 <input type="text" id="goal" class="form-control" placeholder="Add a sleep goal" disabled>
             </div>
+
+            <!-- Hidden sleep goal popup -->
             <div id="sleep-goal-popup"> 
                 <h1>Sleep Goal</h1>
                 <p>How many hours of sleep do you want per night?</p>         
@@ -69,6 +74,7 @@
             </div>
         </div>
 
+        <!-- Javascript -->
         <script src="./scripts/firebaseAPI_TEAM08.js"></script>
         <script src="./scripts/skeleton.js"></script>
         <script src="./scripts/tracker.js"></script>

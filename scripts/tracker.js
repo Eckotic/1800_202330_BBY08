@@ -1,14 +1,4 @@
-// firebase.auth().onAuthStateChanged(user => {
-//     if (user) {
-//         currentUser = db.collection("users").doc(user.uid).collection("sleephistory");
-
-//         currentUser.forEach((doc) => {
-//         console.log(doc.id, doc.data());
-
-//         }); // Go to the Firestore document of the user
-//     };
-// });
-
+//Get all elements by id
 const addGoal = document.getElementById("Addbutton");
 const addGoalPopup = document.getElementById("sleep-goal-popup");
 
@@ -17,35 +7,38 @@ const confirmButton = document.getElementById("add-goal");
 const goalInput = document.getElementById("goal-input");
 const goal = document.getElementById("goal");
 
+//Display sleep goal window
 addGoal.addEventListener("click", function () {
     addGoalPopup.style.display = "block";
 });
 
+//Close sleep goal window
 cancelButton.addEventListener("click", function () {
     addGoalPopup.style.display = "none";
 });
 
+//Close sleep goal window and change placeholder to user's new sleep goal
 confirmButton.addEventListener("click", function () {
     addGoalPopup.style.display = "none";
     goal.placeholder = goalInput.value;
 });
 
+//Display all of the user's sleep history
 function displayhistoryDynamically() {
-    let sleepTemplate = document.getElementById("sleepTemplate"); // Retrieve the HTML element with the ID "hikeCardTemplate" and store it in the cardTemplate variable. 
+    let sleepTemplate = document.getElementById("sleepTemplate");
 
     firebase.auth().onAuthStateChanged(user => {
 
         if (user) {
 
-            db.collection("users").doc(user.uid).collection("sleephistory").get()   //the collection called "hikes"
+            db.collection("users").doc(user.uid).collection("sleephistory").get() 
                 .then(allSessions => {
-                    //var i = 1;  //Optional: if you want to have a unique ID for each hike
-                    allSessions.forEach(doc => { //iterate thru each doc
-                        var date = doc.id;       // get value of the "name" key
-                        var length = doc.data().sleeplength;  // get value of the "details" key
+
+                    allSessions.forEach(doc => {
+                        var date = doc.id;  
+                        var length = doc.data().sleeplength; 
                         let newcard = sleepTemplate.content.cloneNode(true);
                         
-                        //update title and text and image
                         newcard.querySelector('#date').innerHTML = date;
                         newcard.querySelector('#length').innerHTML = "Sleep length: " + length;
 
@@ -57,4 +50,4 @@ function displayhistoryDynamically() {
     })
 }
 
-displayhistoryDynamically();
+displayhistoryDynamically(); //run the function

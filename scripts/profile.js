@@ -1,3 +1,4 @@
+// Retrieve all elements by ID
 var userName = document.getElementById("name");
 var email = document.getElementById("email");
 var country = document.getElementById("country");
@@ -6,16 +7,20 @@ var number = document.getElementById("number");
 var description = document.getElementById("description");
 var profilePicture = document.getElementById("pfp");
 
+//Fills in all available information about user
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
        
         currentUser = db.collection("users").doc(user.uid);
         
+        // Fills in all data in the input boxes
         currentUser.get().then(userDoc => {
             userName.setAttribute("value", userDoc.data().name);
             email.setAttribute("value", userDoc.data().email);
             country.setAttribute("value", userDoc.data().country);
             school.setAttribute("value", userDoc.data().school);
+
+            // If the user has no data for number and description, fill the input box with nothing instead of undefined
             if (userDoc.data().number === undefined) {
                 number.setAttribute("value", "");
             } else {
@@ -35,7 +40,10 @@ firebase.auth().onAuthStateChanged(user => {
     }
 })
 
+// Allows user to edit the information
 function edit() {
+
+    // enables input boxes
     userName.disabled = false;
     email.disabled = false;
     country.disabled = false;
@@ -44,7 +52,10 @@ function edit() {
     description.disabled = false;
 }
 
+// Allows user to save the information to the firestore database
 function save() {
+
+    // disables input boxes
     userName.disabled = true;
     email.disabled = true;
     country.disabled = true;
@@ -52,6 +63,7 @@ function save() {
     number.disabled = true;
     description.disabled = true;
 
+    // Changes firestore data
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
 
@@ -60,6 +72,7 @@ function save() {
             url = profilePicture.getAttribute("src");
 
             currentUser.set({
+                // sets all the firestore variables to the new data
                 name: userName.value,
                 email: email.value,
                 country: country.value,
