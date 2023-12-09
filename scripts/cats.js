@@ -1,11 +1,11 @@
-//declaring variables waw
+//various variables
 var selectedCat = "fisherCat";
 const game = db.collection("users").doc("xYwKXL8oCeTrSLyuwjbXYodDhCI2").collection("game").doc("userInfo");
 const FieldValue = firebase.firestore.FieldValue;
 let initialLoad = true;
 let refreshingHTML = true;
 
-//links html to the js, waw
+//links html to the js scripts
 const upgradeBtn = document.getElementById("upgrade-button");
 const resourcesDisplay = document.getElementById("resources-goes-here");
 const powerDisplay = document.getElementById("power-goes-here");
@@ -22,13 +22,14 @@ const medicCatBtn = document.getElementById("medicCatBtn");
 
 var upgrading = false;
 
-//updates power stat of a cat
+//updates the stats of a cat
 function updateStats(){
 
+    //get the info of the specific cat
     let cat = db.collection("users").doc("xYwKXL8oCeTrSLyuwjbXYodDhCI2").collection("game").doc(selectedCat);
-
     cat.get().then( DOC => {
         
+        //assign variables data from firebase
         let health = DOC.data().health;
         let healthIncrement = DOC.data().healthIncrement;
 
@@ -50,6 +51,7 @@ function updateStats(){
 
         }
 
+        //update html elements
         nameDisplay.innerHTML = name;
         powerDisplay.innerHTML = "Power: " + power;
         healthDisplay.innerHTML = "Health: " + health;
@@ -68,7 +70,7 @@ function upgradeStats(){
     //get user doc then...
     game.get().then( DOC => {
 
-        //get user data for "resources"
+        //get user data for resources
         let resources = DOC.data().resources;
 
         if (resources > 49 && initialLoad == false){
@@ -78,25 +80,21 @@ function upgradeStats(){
                 resources: resources - 50
             });
 
-            //update display
-            resourcesDisplay.innerHTML = "Resources left: " + resources;
-            upgrading = true;
-            refreshingHTML = true;
-            updateStats();
+        }
 
-        }
-        else {
-            resourcesDisplay.innerHTML = "Resources left: " + resources;
-            refreshingHTML = true;
-            updateStats();
-            initialLoad = false;
-        }
+        //update display
+        resourcesDisplay.innerHTML = "Resources left: " + resources;
+        refreshingHTML = true;
+        updateStats();
+        initialLoad = false;
     });
 
 }
 
+//runs on site load to append the data to the site
 upgradeStats();
 
+//function that swaps between the cat images and stats
 function changeCat(cat){
     var filePath = "./images/" + cat + "Cat.png";
     catImg.src = filePath;
@@ -105,7 +103,7 @@ function changeCat(cat){
     updateStats();
 }
 
-//on click, upgrade power stat
+//all buttons with their respective functions
 upgradeBtn.addEventListener("click", upgradeStats); 
 fisherCatBtn.addEventListener("click", changeCat.bind(this, "fisher")); 
 wizardCatBtn.addEventListener("click", changeCat.bind(this, "wizard")); 

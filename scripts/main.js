@@ -274,7 +274,6 @@ function finishSession() {
 function sleepSession() {
 
     sessionWindow.style.display = "block";
-
     
     const sleepTime = displayTime.split(":");
 
@@ -283,6 +282,8 @@ function sleepSession() {
 
     const game = db.collection("users").doc("xYwKXL8oCeTrSLyuwjbXYodDhCI2").collection("game").doc("userInfo");
 
+    //there's a multiplier in effect to slightly randomize the amount of resources given
+    //the multiplier is better the more sleep a person gets
     //minutes slept * (1 + ((1 to 5) / 10))            
     const multiplier = (1 + (((Math.floor(Math.random() * 5)) + 1) / 10))
     const resourcesGained = Math.floor(sleepMinutes * multiplier); 
@@ -290,7 +291,7 @@ function sleepSession() {
      //get user doc then...
      game.get().then( DOC => {
 
-        //get user data for "resources"
+        //get user data for resources
         let resources = DOC.data().resources;
 
         //add resources to current amount
